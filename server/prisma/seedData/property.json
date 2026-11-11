@@ -1,17 +1,24 @@
 [
   {
     "id": 1,
-    "name": "Sunny Downtown Apartment",
-    "description": "A beautiful apartment in the heart of downtown with plenty of natural light.",
-    "pricePerMonth": 1500.0,
-    "securityDeposit": 1500.0,
-    "applicationFee": 50.0,
+    "name": "Sunny Kilimani Apartment",
+    "description": "A bright two-bedroom apartment off Argwings Kodhek Road, close to Yaya Centre, with a backup generator and borehole water.",
+    "pricePerMonth": 85000.0,
+    "securityDeposit": 85000.0,
+    "applicationFee": 2000.0,
     "photoUrls": [
       "https://example.com/apartment1_1.jpg",
       "https://example.com/apartment1_2.jpg"
     ],
-    "amenities": ["AirConditioning", "WasherDryer", "Parking"],
-    "highlights": ["HighSpeedInternetAccess", "CloseToTransit"],
+    "amenities": [
+      "AirConditioning",
+      "WasherDryer",
+      "Parking"
+    ],
+    "highlights": [
+      "HighSpeedInternetAccess",
+      "CloseToTransit"
+    ],
     "isPetsAllowed": true,
     "isParkingIncluded": false,
     "beds": 2,
@@ -26,17 +33,25 @@
   },
   {
     "id": 2,
-    "name": "Cozy Beach House",
-    "description": "A charming beach house with stunning ocean views.",
-    "pricePerMonth": 2000.0,
-    "securityDeposit": 2000.0,
-    "applicationFee": 75.0,
+    "name": "Karen Garden Villa",
+    "description": "A three-bedroom villa on a quiet Karen lane with a mature garden, a DSQ and secure parking for three cars.",
+    "pricePerMonth": 180000.0,
+    "securityDeposit": 180000.0,
+    "applicationFee": 3000.0,
     "photoUrls": [
       "https://example.com/beachhouse1.jpg",
       "https://example.com/beachhouse2.jpg"
     ],
-    "amenities": ["AirConditioning", "WasherDryer", "Parking", "Pool"],
-    "highlights": ["GreatView", "CloseToTransit"],
+    "amenities": [
+      "AirConditioning",
+      "WasherDryer",
+      "Parking",
+      "Pool"
+    ],
+    "highlights": [
+      "GreatView",
+      "CloseToTransit"
+    ],
     "isPetsAllowed": true,
     "isParkingIncluded": true,
     "beds": 3,
@@ -51,17 +66,24 @@
   },
   {
     "id": 3,
-    "name": "Modern City Loft",
-    "description": "Sleek and stylish loft in the heart of the city.",
-    "pricePerMonth": 2200.0,
-    "securityDeposit": 2200.0,
-    "applicationFee": 60.0,
+    "name": "Westlands City Loft",
+    "description": "A modern one-bedroom loft a short walk from Sarit Centre, with high-speed fibre, a gym and a rooftop lounge.",
+    "pricePerMonth": 75000.0,
+    "securityDeposit": 75000.0,
+    "applicationFee": 2000.0,
     "photoUrls": [
       "https://example.com/cityloft1.jpg",
       "https://example.com/cityloft2.jpg"
     ],
-    "amenities": ["AirConditioning", "WasherDryer", "Gym"],
-    "highlights": ["HighSpeedInternetAccess", "CloseToTransit"],
+    "amenities": [
+      "AirConditioning",
+      "WasherDryer",
+      "Gym"
+    ],
+    "highlights": [
+      "HighSpeedInternetAccess",
+      "CloseToTransit"
+    ],
     "isPetsAllowed": true,
     "isParkingIncluded": false,
     "beds": 1,
@@ -76,17 +98,24 @@
   },
   {
     "id": 4,
-    "name": "Spacious Family Home",
-    "description": "Large family home with a beautiful backyard and modern amenities.",
-    "pricePerMonth": 2500.0,
-    "securityDeposit": 2500.0,
-    "applicationFee": 80.0,
+    "name": "Lavington Family Home",
+    "description": "A spacious four-bedroom family home in Lavington with a large garden, a study and 24-hour security.",
+    "pricePerMonth": 250000.0,
+    "securityDeposit": 250000.0,
+    "applicationFee": 3000.0,
     "photoUrls": [
       "https://example.com/familyhome1.jpg",
       "https://example.com/familyhome2.jpg"
     ],
-    "amenities": ["AirConditioning", "WasherDryer", "Parking", "Dishwasher"],
-    "highlights": ["QuietNeighborhood"],
+    "amenities": [
+      "AirConditioning",
+      "WasherDryer",
+      "Parking",
+      "Dishwasher"
+    ],
+    "highlights": [
+      "QuietNeighborhood"
+    ],
     "isPetsAllowed": true,
     "isParkingIncluded": false,
     "beds": 4,
@@ -101,17 +130,24 @@
   },
   {
     "id": 5,
-    "name": "Luxury Penthouse",
-    "description": "Stunning penthouse with panoramic city views and high-end finishes.",
-    "pricePerMonth": 5000.0,
-    "securityDeposit": 5000.0,
-    "applicationFee": 100.0,
+    "name": "Riverside Penthouse",
+    "description": "A three-bedroom penthouse on Riverside Drive with a wraparound terrace and city views across Nairobi.",
+    "pricePerMonth": 350000.0,
+    "securityDeposit": 350000.0,
+    "applicationFee": 5000.0,
     "photoUrls": [
       "https://example.com/penthouse1.jpg",
       "https://example.com/penthouse2.jpg"
     ],
-    "amenities": ["AirConditioning", "WasherDryer", "Gym", "Pool"],
-    "highlights": ["GreatView"],
+    "amenities": [
+      "AirConditioning",
+      "WasherDryer",
+      "Gym",
+      "Pool"
+    ],
+    "highlights": [
+      "GreatView"
+    ],
     "isPetsAllowed": true,
     "isParkingIncluded": false,
     "beds": 3,
@@ -126,17 +162,22 @@
   },
   {
     "id": 6,
-    "name": "Cozy Studio Apartment",
-    "description": "Efficient studio apartment perfect for students or young professionals.",
-    "pricePerMonth": 1200.0,
-    "securityDeposit": 1200.0,
-    "applicationFee": 40.0,
+    "name": "South B Studio",
+    "description": "A compact studio in South B with good matatu links to the CBD and Mombasa Road.",
+    "pricePerMonth": 25000.0,
+    "securityDeposit": 25000.0,
+    "applicationFee": 1000.0,
     "photoUrls": [
       "https://example.com/studio1.jpg",
       "https://example.com/studio2.jpg"
     ],
-    "amenities": ["AirConditioning", "HighSpeedInternet"],
-    "highlights": ["CloseToTransit"],
+    "amenities": [
+      "AirConditioning",
+      "HighSpeedInternet"
+    ],
+    "highlights": [
+      "CloseToTransit"
+    ],
     "isPetsAllowed": true,
     "isParkingIncluded": false,
     "beds": 0,
@@ -151,17 +192,23 @@
   },
   {
     "id": 7,
-    "name": "Historic Brownstone",
-    "description": "Charming brownstone with original features and modern updates.",
-    "pricePerMonth": 3000.0,
-    "securityDeposit": 3000.0,
-    "applicationFee": 70.0,
+    "name": "Runda Townhouse",
+    "description": "A three-bedroom townhouse in a gated Runda compound with a shared pool and children's play area.",
+    "pricePerMonth": 220000.0,
+    "securityDeposit": 220000.0,
+    "applicationFee": 3000.0,
     "photoUrls": [
       "https://example.com/brownstone1.jpg",
       "https://example.com/brownstone2.jpg"
     ],
-    "amenities": ["AirConditioning", "WasherDryer", "HighSpeedInternet"],
-    "highlights": ["RecentlyRenovated"],
+    "amenities": [
+      "AirConditioning",
+      "WasherDryer",
+      "HighSpeedInternet"
+    ],
+    "highlights": [
+      "RecentlyRenovated"
+    ],
     "isPetsAllowed": true,
     "isParkingIncluded": false,
     "beds": 3,
@@ -176,17 +223,22 @@
   },
   {
     "id": 8,
-    "name": "Urban Micro-Apartment",
-    "description": "Compact and efficient living space in the heart of the city.",
-    "pricePerMonth": 1000.0,
-    "securityDeposit": 1000.0,
-    "applicationFee": 30.0,
+    "name": "Ngara Micro Apartment",
+    "description": "An efficient bedsitter near the CBD, ideal for students and young professionals.",
+    "pricePerMonth": 15000.0,
+    "securityDeposit": 15000.0,
+    "applicationFee": 500.0,
     "photoUrls": [
       "https://example.com/micro1.jpg",
       "https://example.com/micro2.jpg"
     ],
-    "amenities": ["AirConditioning", "HighSpeedInternet"],
-    "highlights": ["CloseToTransit"],
+    "amenities": [
+      "AirConditioning",
+      "HighSpeedInternet"
+    ],
+    "highlights": [
+      "CloseToTransit"
+    ],
     "isPetsAllowed": true,
     "isParkingIncluded": false,
     "beds": 0,
@@ -201,17 +253,23 @@
   },
   {
     "id": 9,
-    "name": "Mountain View Cabin",
-    "description": "Rustic cabin with breathtaking mountain views and modern amenities.",
-    "pricePerMonth": 1800.0,
-    "securityDeposit": 1800.0,
-    "applicationFee": 60.0,
+    "name": "Ngong Hills Cottage",
+    "description": "A two-bedroom stone cottage near the Ngong Hills with open views and a fireplace for cool evenings.",
+    "pricePerMonth": 60000.0,
+    "securityDeposit": 60000.0,
+    "applicationFee": 1500.0,
     "photoUrls": [
       "https://example.com/cabin1.jpg",
       "https://example.com/cabin2.jpg"
     ],
-    "amenities": ["WasherDryer", "AirConditioning"],
-    "highlights": ["GreatView", "QuietNeighborhood"],
+    "amenities": [
+      "WasherDryer",
+      "AirConditioning"
+    ],
+    "highlights": [
+      "GreatView",
+      "QuietNeighborhood"
+    ],
     "isPetsAllowed": true,
     "isParkingIncluded": false,
     "beds": 2,
@@ -226,17 +284,23 @@
   },
   {
     "id": 10,
-    "name": "Eco-Friendly Tiny House",
-    "description": "Sustainable living in a compact, well-designed tiny house.",
-    "pricePerMonth": 900.0,
-    "securityDeposit": 900.0,
-    "applicationFee": 35.0,
+    "name": "Kitengela Tiny House",
+    "description": "A one-bedroom eco tiny house with solar power and rainwater harvesting, off Namanga Road.",
+    "pricePerMonth": 18000.0,
+    "securityDeposit": 18000.0,
+    "applicationFee": 500.0,
     "photoUrls": [
       "https://example.com/tinyhouse1.jpg",
       "https://example.com/tinyhouse2.jpg"
     ],
-    "amenities": ["WasherDryer", "AirConditioning", "HighSpeedInternet"],
-    "highlights": ["SmokeFree"],
+    "amenities": [
+      "WasherDryer",
+      "AirConditioning",
+      "HighSpeedInternet"
+    ],
+    "highlights": [
+      "SmokeFree"
+    ],
     "isPetsAllowed": true,
     "isParkingIncluded": false,
     "beds": 1,

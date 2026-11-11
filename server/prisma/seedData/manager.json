@@ -2,71 +2,71 @@
   {
     "id": 1,
     "cognitoId": "010be580-60a1-70ae-780e-18a6fd94ad32",
-    "name": "John Smith",
-    "email": "john.smith@example.com",
-    "phoneNumber": "+1 (555) 123-4567"
+    "name": "Wanjiru Kariuki",
+    "email": "wanjiru.kariuki@example.com",
+    "phoneNumber": "+254 712 100 200"
   },
   {
     "id": 2,
     "cognitoId": "us-east-2:23456789-90ab-cdef-1234-567890abcdef",
-    "name": "Sarah Johnson",
-    "email": "sarah.johnson@example.com",
-    "phoneNumber": "+1 (555) 987-6543"
+    "name": "Otieno Odhiambo",
+    "email": "otieno.odhiambo@example.com",
+    "phoneNumber": "+254 712 101 201"
   },
   {
     "id": 3,
     "cognitoId": "us-east-2:34567890-90ab-cdef-1234-567890abcdef",
-    "name": "Michael Brown",
-    "email": "michael.brown@example.com",
-    "phoneNumber": "+1 (555) 456-7890"
+    "name": "Achieng Wafula",
+    "email": "achieng.wafula@example.com",
+    "phoneNumber": "+254 712 102 202"
   },
   {
     "id": 4,
     "cognitoId": "us-east-2:45678901-90ab-cdef-1234-567890abcdef",
-    "name": "Emily Davis",
-    "email": "emily.davis@example.com",
-    "phoneNumber": "+1 (555) 234-5678"
+    "name": "Kamau Njoroge",
+    "email": "kamau.njoroge@example.com",
+    "phoneNumber": "+254 712 103 203"
   },
   {
     "id": 5,
     "cognitoId": "us-east-2:56789012-90ab-cdef-1234-567890abcdef",
-    "name": "Robert Wilson",
-    "email": "robert.wilson@example.com",
-    "phoneNumber": "+1 (555) 876-5432"
+    "name": "Njeri Kiptoo",
+    "email": "njeri.kiptoo@example.com",
+    "phoneNumber": "+254 712 104 204"
   },
   {
     "id": 6,
     "cognitoId": "us-east-2:67890123-90ab-cdef-1234-567890abcdef",
-    "name": "Lisa Thompson",
-    "email": "lisa.thompson@example.com",
-    "phoneNumber": "+1 (555) 345-6789"
+    "name": "Mwangi Mutiso",
+    "email": "mwangi.mutiso@example.com",
+    "phoneNumber": "+254 712 105 205"
   },
   {
     "id": 7,
     "cognitoId": "us-east-2:78901234-90ab-cdef-1234-567890abcdef",
-    "name": "Daniel Martinez",
-    "email": "daniel.martinez@example.com",
-    "phoneNumber": "+1 (555) 789-0123"
+    "name": "Akinyi Owino",
+    "email": "akinyi.owino@example.com",
+    "phoneNumber": "+254 712 106 206"
   },
   {
     "id": 8,
     "cognitoId": "us-east-2:89012345-90ab-cdef-1234-567890abcdef",
-    "name": "Olivia Garcia",
-    "email": "olivia.garcia@example.com",
-    "phoneNumber": "+1 (555) 678-9012"
+    "name": "Kiprono Gathoni",
+    "email": "kiprono.gathoni@example.com",
+    "phoneNumber": "+254 712 107 207"
   },
   {
     "id": 9,
     "cognitoId": "us-east-2:90123456-90ab-cdef-1234-567890abcdef",
-    "name": "Ethan Rodriguez",
-    "email": "ethan.rodriguez@example.com",
-    "phoneNumber": "+1 (555) 567-8901"
+    "name": "Wambui Langat",
+    "email": "wambui.langat@example.com",
+    "phoneNumber": "+254 712 108 208"
   },
   {
     "id": 10,
     "cognitoId": "us-east-2:01234567-90ab-cdef-1234-567890abcdef",
-    "name": "Sophia Kim",
-    "email": "sophia.kim@example.com",
-    "phoneNumber": "+1 (555) 456-7890"
+    "name": "Ochieng Ndegwa",
+    "email": "ochieng.ndegwa@example.com",
+    "phoneNumber": "+254 712 109 209"
   }
 ]

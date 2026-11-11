@@ -1,92 +1,92 @@
 [
   {
     "id": 1,
-    "country": "United States",
-    "city": "Pasadena",
-    "state": "CA",
-    "address": "123 Colorado Blvd",
-    "postalCode": "91105",
-    "coordinates": "POINT(-118.144516 34.147785)"
+    "country": "Kenya",
+    "city": "Kilimani",
+    "state": "Nairobi County",
+    "address": "10 Argwings Kodhek Road",
+    "postalCode": "00100",
+    "coordinates": "POINT(36.7856 -1.2905)"
   },
   {
     "id": 2,
-    "country": "United States",
-    "city": "Santa Monica",
-    "state": "CA",
-    "address": "456 Ocean Ave",
-    "postalCode": "90401",
-    "coordinates": "POINT(-118.496513 34.013654)"
+    "country": "Kenya",
+    "city": "Karen",
+    "state": "Nairobi County",
+    "address": "17 Langata South Road",
+    "postalCode": "00502",
+    "coordinates": "POINT(36.7073 -1.3197)"
   },
   {
     "id": 3,
-    "country": "United States",
-    "city": "Burbank",
-    "state": "CA",
-    "address": "789 Hollywood Way",
-    "postalCode": "91505",
-    "coordinates": "POINT(-118.328661 34.180839)"
+    "country": "Kenya",
+    "city": "Westlands",
+    "state": "Nairobi County",
+    "address": "24 Woodvale Grove",
+    "postalCode": "00800",
+    "coordinates": "POINT(36.8065 -1.2676)"
   },
   {
     "id": 4,
-    "country": "United States",
-    "city": "Long Beach",
-    "state": "CA",
-    "address": "101 Pine Ave",
-    "postalCode": "90802",
-    "coordinates": "POINT(-118.192604 33.766720)"
+    "country": "Kenya",
+    "city": "Lavington",
+    "state": "Nairobi County",
+    "address": "31 James Gichuru Road",
+    "postalCode": "00603",
+    "coordinates": "POINT(36.769 -1.279)"
   },
   {
     "id": 5,
-    "country": "United States",
-    "city": "New York",
-    "state": "NY",
-    "address": "555 Manhattan Ave",
-    "postalCode": "10001",
-    "coordinates": "POINT(-74.005941 40.712784)"
+    "country": "Kenya",
+    "city": "Riverside",
+    "state": "Nairobi County",
+    "address": "38 Riverside Drive",
+    "postalCode": "00606",
+    "coordinates": "POINT(36.803 -1.272)"
   },
   {
     "id": 6,
-    "country": "United States",
-    "city": "Malibu",
-    "state": "CA",
-    "address": "888 Malibu Road",
-    "postalCode": "90265",
-    "coordinates": "POINT(-118.774518 34.025922)"
+    "country": "Kenya",
+    "city": "South B",
+    "state": "Nairobi County",
+    "address": "45 Mukoma Road",
+    "postalCode": "00200",
+    "coordinates": "POINT(36.837 -1.311)"
   },
   {
     "id": 7,
-    "country": "United States",
-    "city": "Glendale",
-    "state": "CA",
-    "address": "777 Brand Blvd",
-    "postalCode": "91203",
-    "coordinates": "POINT(-118.254708 34.142508)"
+    "country": "Kenya",
+    "city": "Runda",
+    "state": "Nairobi County",
+    "address": "52 Runda Grove",
+    "postalCode": "00621",
+    "coordinates": "POINT(36.818 -1.218)"
   },
   {
     "id": 8,
-    "country": "United States",
-    "city": "Torrance",
-    "state": "CA",
-    "address": "555 Torrance Blvd",
-    "postalCode": "90503",
-    "coordinates": "POINT(-118.352575 33.835849)"
+    "country": "Kenya",
+    "city": "Ngara",
+    "state": "Nairobi County",
+    "address": "59 Desai Road",
+    "postalCode": "00600",
+    "coordinates": "POINT(36.824 -1.274)"
   },
   {
     "id": 9,
-    "country": "United States",
-    "city": "Miami",
-    "state": "FL",
-    "address": "1234 Ocean Dr",
-    "postalCode": "33139",
-    "coordinates": "POINT(-80.130045 25.782551)"
+    "country": "Kenya",
+    "city": "Ngong",
+    "state": "Kajiado County",
+    "address": "66 Kibiko Road",
+    "postalCode": "00208",
+    "coordinates": "POINT(36.65 -1.36)"
   },
   {
     "id": 10,
-    "country": "United States",
-    "city": "Beverly Hills",
-    "state": "CA",
-    "address": "789 Rodeo Dr",
-    "postalCode": "90210",
-    "coordinates": "POINT(-118.400356 34.073620)"
+    "country": "Kenya",
+    "city": "Kitengela",
+    "state": "Kajiado County",
+    "address": "73 Namanga Road",
+    "postalCode": "00241",
+    "coordinates": "POINT(36.959 -1.473)"
   }
 ]

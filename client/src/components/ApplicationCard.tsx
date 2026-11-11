@@ -1,6 +1,7 @@
 import { Mail, MapPin, PhoneCall } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
+import { formatKES } from "@/lib/utils";
 
 const ApplicationCard = ({
   application,
@@ -46,7 +47,7 @@ const ApplicationCard = ({
               </div>
             </div>
             <div className="text-xl font-semibold">
-              ${application.property.pricePerMonth}{" "}
+              {formatKES(application.property.pricePerMonth)}{" "}
               <span className="text-sm font-normal">/ month</span>
             </div>
           </div>

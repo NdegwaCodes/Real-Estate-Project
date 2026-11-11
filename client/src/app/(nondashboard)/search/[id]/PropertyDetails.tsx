@@ -1,6 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AmenityIcons, HighlightIcons } from "@/lib/constants";
-import { formatEnumString } from "@/lib/utils";
+import { formatEnumString, formatKES } from "@/lib/utils";
 import { useGetPropertyQuery } from "@/state/api";
 import { HelpCircle } from "lucide-react";
 import React from "react";
@@ -87,7 +87,7 @@ const PropertyDetails = ({ propertyId }: PropertyDetailsProps) => {
                 Application Fee
               </span>
               <span className="text-primary-700">
-                ${property.applicationFee}
+                {formatKES(property.applicationFee)}
               </span>
             </div>
             <hr />
@@ -96,7 +96,7 @@ const PropertyDetails = ({ propertyId }: PropertyDetailsProps) => {
                 Security Deposit
               </span>
               <span className="text-primary-700">
-                ${property.securityDeposit}
+                {formatKES(property.securityDeposit)}
               </span>
             </div>
             <hr />

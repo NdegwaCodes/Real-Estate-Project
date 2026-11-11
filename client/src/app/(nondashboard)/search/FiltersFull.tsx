@@ -4,7 +4,7 @@ import { usePathname, useRouter } from "next/navigation";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { debounce } from "lodash";
-import { cleanParams, cn, formatEnumString } from "@/lib/utils";
+import { cleanParams, cn, formatEnumString, formatKES } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
@@ -146,11 +146,11 @@ const FiltersFull = () => {
           <h4 className="font-bold mb-2">Price Range (Monthly)</h4>
           <Slider
             min={0}
-            max={10000}
-            step={100}
+            max={500000}
+            step={5000}
             value={[
               localFilters.priceRange[0] ?? 0,
-              localFilters.priceRange[1] ?? 10000,
+              localFilters.priceRange[1] ?? 500000,
             ]}
             onValueChange={(value: any) =>
               setLocalFilters((prev) => ({
@@ -160,8 +160,8 @@ const FiltersFull = () => {
             }
           />
           <div className="flex justify-between mt-2">
-            <span>${localFilters.priceRange[0] ?? 0}</span>
-            <span>${localFilters.priceRange[1] ?? 10000}</span>
+            <span>{formatKES(localFilters.priceRange[0] ?? 0)}</span>
+            <span>{formatKES(localFilters.priceRange[1] ?? 500000)}</span>
           </div>
         </div>
 

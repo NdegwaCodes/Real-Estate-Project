@@ -10,14 +10,27 @@ export function formatEnumString(str: string) {
   return str.replace(/([A-Z])/g, " $1").trim();
 }
 
+export function formatKES(value: number) {
+  return `KSh ${Math.round(value).toLocaleString("en-KE")}`;
+}
+
 export function formatPriceValue(value: number | null, isMin: boolean) {
   if (value === null || value === 0)
     return isMin ? "Any Min Price" : "Any Max Price";
   if (value >= 1000) {
     const kValue = value / 1000;
-    return isMin ? `$${kValue}k+` : `<$${kValue}k`;
+    return isMin ? `KSh ${kValue}k+` : `< KSh ${kValue}k`;
   }
-  return isMin ? `$${value}+` : `<$${value}`;
+  return isMin ? `KSh ${value}+` : `< KSh ${value}`;
+}
+
+export function escapeHtml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

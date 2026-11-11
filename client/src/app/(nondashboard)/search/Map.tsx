@@ -5,6 +5,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { useAppSelector } from "@/state/redux";
 import { useGetPropertiesQuery } from "@/state/api";
 import { Property } from "@/types/prismaTypes";
+import { escapeHtml, formatKES } from "@/lib/utils";
 
 mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN as string;
 
@@ -23,7 +24,7 @@ const Map = () => {
     const map = new mapboxgl.Map({
       container: mapContainerRef.current!,
       style: "mapbox://styles/majesticglue/cm6u301pq008b01sl7yk1cnvb",
-      center: filters.coordinates || [-74.5, 40],
+      center: filters.coordinates || [36.8219, -1.2921],
       zoom: 9,
     });
 
@@ -71,9 +72,9 @@ const createPropertyMarker = (property: Property, map: mapboxgl.Map) => {
         <div class="marker-popup">
           <div class="marker-popup-image"></div>
           <div>
-            <a href="/search/${property.id}" target="_blank" class="marker-popup-title">${property.name}</a>
+            <a href="/search/${property.id}" target="_blank" class="marker-popup-title">${escapeHtml(property.name)}</a>
             <p class="marker-popup-price">
-              $${property.pricePerMonth}
+              ${formatKES(property.pricePerMonth)}
               <span class="marker-popup-price-unit"> / month</span>
             </p>
           </div>

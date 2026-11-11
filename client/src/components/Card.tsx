@@ -2,6 +2,7 @@ import { Bath, Bed, Heart, House, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import { formatKES } from "@/lib/utils";
 
 const Card = ({
   property,
@@ -80,7 +81,7 @@ const Card = ({
             </span>
           </div>
           <p className="text-lg font-bold mb-3">
-            ${property.pricePerMonth.toFixed(0)}{" "}
+            {formatKES(property.pricePerMonth)}{" "}
             <span className="text-gray-600 text-base font-normal"> /month</span>
           </p>
         </div>
