@@ -48,6 +48,11 @@ export type Lease = $Result.DefaultSelection<Prisma.$LeasePayload>
  * 
  */
 export type Payment = $Result.DefaultSelection<Prisma.$PaymentPayload>
+/**
+ * Model MpesaTransaction
+ * 
+ */
+export type MpesaTransaction = $Result.DefaultSelection<Prisma.$MpesaTransactionPayload>
 
 /**
  * Enums
@@ -123,6 +128,15 @@ export const PaymentStatus: {
 
 export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
 
+
+export const MpesaStatus: {
+  Pending: 'Pending',
+  Success: 'Success',
+  Failed: 'Failed'
+};
+
+export type MpesaStatus = (typeof MpesaStatus)[keyof typeof MpesaStatus]
+
 }
 
 export type Highlight = $Enums.Highlight
@@ -144,6 +158,10 @@ export const ApplicationStatus: typeof $Enums.ApplicationStatus
 export type PaymentStatus = $Enums.PaymentStatus
 
 export const PaymentStatus: typeof $Enums.PaymentStatus
+
+export type MpesaStatus = $Enums.MpesaStatus
+
+export const MpesaStatus: typeof $Enums.MpesaStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -339,6 +357,16 @@ export class PrismaClient<
     * ```
     */
   get payment(): Prisma.PaymentDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.mpesaTransaction`: Exposes CRUD operations for the **MpesaTransaction** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more MpesaTransactions
+    * const mpesaTransactions = await prisma.mpesaTransaction.findMany()
+    * ```
+    */
+  get mpesaTransaction(): Prisma.MpesaTransactionDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -785,7 +813,8 @@ export namespace Prisma {
     Location: 'Location',
     Application: 'Application',
     Lease: 'Lease',
-    Payment: 'Payment'
+    Payment: 'Payment',
+    MpesaTransaction: 'MpesaTransaction'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -801,7 +830,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "property" | "manager" | "tenant" | "location" | "application" | "lease" | "payment"
+      modelProps: "property" | "manager" | "tenant" | "location" | "application" | "lease" | "payment" | "mpesaTransaction"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1307,6 +1336,80 @@ export namespace Prisma {
           }
         }
       }
+      MpesaTransaction: {
+        payload: Prisma.$MpesaTransactionPayload<ExtArgs>
+        fields: Prisma.MpesaTransactionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MpesaTransactionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MpesaTransactionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MpesaTransactionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MpesaTransactionPayload>
+          }
+          findFirst: {
+            args: Prisma.MpesaTransactionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MpesaTransactionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MpesaTransactionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MpesaTransactionPayload>
+          }
+          findMany: {
+            args: Prisma.MpesaTransactionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MpesaTransactionPayload>[]
+          }
+          create: {
+            args: Prisma.MpesaTransactionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MpesaTransactionPayload>
+          }
+          createMany: {
+            args: Prisma.MpesaTransactionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MpesaTransactionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MpesaTransactionPayload>[]
+          }
+          delete: {
+            args: Prisma.MpesaTransactionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MpesaTransactionPayload>
+          }
+          update: {
+            args: Prisma.MpesaTransactionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MpesaTransactionPayload>
+          }
+          deleteMany: {
+            args: Prisma.MpesaTransactionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MpesaTransactionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MpesaTransactionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MpesaTransactionPayload>[]
+          }
+          upsert: {
+            args: Prisma.MpesaTransactionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MpesaTransactionPayload>
+          }
+          aggregate: {
+            args: Prisma.MpesaTransactionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMpesaTransaction>
+          }
+          groupBy: {
+            args: Prisma.MpesaTransactionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MpesaTransactionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MpesaTransactionCountArgs<ExtArgs>
+            result: $Utils.Optional<MpesaTransactionCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1398,6 +1501,7 @@ export namespace Prisma {
     application?: ApplicationOmit
     lease?: LeaseOmit
     payment?: PaymentOmit
+    mpesaTransaction?: MpesaTransactionOmit
   }
 
   /* Types for Logging */
@@ -1693,6 +1797,37 @@ export namespace Prisma {
    */
   export type LeaseCountOutputTypeCountPaymentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PaymentWhereInput
+  }
+
+
+  /**
+   * Count Type PaymentCountOutputType
+   */
+
+  export type PaymentCountOutputType = {
+    mpesaTransactions: number
+  }
+
+  export type PaymentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    mpesaTransactions?: boolean | PaymentCountOutputTypeCountMpesaTransactionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * PaymentCountOutputType without action
+   */
+  export type PaymentCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentCountOutputType
+     */
+    select?: PaymentCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * PaymentCountOutputType without action
+   */
+  export type PaymentCountOutputTypeCountMpesaTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MpesaTransactionWhereInput
   }
 
 
@@ -8965,7 +9100,7 @@ export namespace Prisma {
     amountDue: number
     amountPaid: number
     dueDate: Date
-    paymentDate: Date
+    paymentDate: Date | null
     paymentStatus: $Enums.PaymentStatus
     leaseId: number
     _count: PaymentCountAggregateOutputType | null
@@ -8998,6 +9133,8 @@ export namespace Prisma {
     paymentStatus?: boolean
     leaseId?: boolean
     lease?: boolean | LeaseDefaultArgs<ExtArgs>
+    mpesaTransactions?: boolean | Payment$mpesaTransactionsArgs<ExtArgs>
+    _count?: boolean | PaymentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["payment"]>
 
   export type PaymentSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -9035,6 +9172,8 @@ export namespace Prisma {
   export type PaymentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "amountDue" | "amountPaid" | "dueDate" | "paymentDate" | "paymentStatus" | "leaseId", ExtArgs["result"]["payment"]>
   export type PaymentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     lease?: boolean | LeaseDefaultArgs<ExtArgs>
+    mpesaTransactions?: boolean | Payment$mpesaTransactionsArgs<ExtArgs>
+    _count?: boolean | PaymentCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PaymentIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     lease?: boolean | LeaseDefaultArgs<ExtArgs>
@@ -9047,13 +9186,14 @@ export namespace Prisma {
     name: "Payment"
     objects: {
       lease: Prisma.$LeasePayload<ExtArgs>
+      mpesaTransactions: Prisma.$MpesaTransactionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       amountDue: number
       amountPaid: number
       dueDate: Date
-      paymentDate: Date
+      paymentDate: Date | null
       paymentStatus: $Enums.PaymentStatus
       leaseId: number
     }, ExtArgs["result"]["payment"]>
@@ -9451,6 +9591,7 @@ export namespace Prisma {
   export interface Prisma__PaymentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     lease<T extends LeaseDefaultArgs<ExtArgs> = {}>(args?: Subset<T, LeaseDefaultArgs<ExtArgs>>): Prisma__LeaseClient<$Result.GetResult<Prisma.$LeasePayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    mpesaTransactions<T extends Payment$mpesaTransactionsArgs<ExtArgs> = {}>(args?: Subset<T, Payment$mpesaTransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MpesaTransactionPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9883,6 +10024,30 @@ export namespace Prisma {
   }
 
   /**
+   * Payment.mpesaTransactions
+   */
+  export type Payment$mpesaTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MpesaTransaction
+     */
+    select?: MpesaTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MpesaTransaction
+     */
+    omit?: MpesaTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MpesaTransactionInclude<ExtArgs> | null
+    where?: MpesaTransactionWhereInput
+    orderBy?: MpesaTransactionOrderByWithRelationInput | MpesaTransactionOrderByWithRelationInput[]
+    cursor?: MpesaTransactionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MpesaTransactionScalarFieldEnum | MpesaTransactionScalarFieldEnum[]
+  }
+
+  /**
    * Payment without action
    */
   export type PaymentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9898,6 +10063,1201 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: PaymentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model MpesaTransaction
+   */
+
+  export type AggregateMpesaTransaction = {
+    _count: MpesaTransactionCountAggregateOutputType | null
+    _avg: MpesaTransactionAvgAggregateOutputType | null
+    _sum: MpesaTransactionSumAggregateOutputType | null
+    _min: MpesaTransactionMinAggregateOutputType | null
+    _max: MpesaTransactionMaxAggregateOutputType | null
+  }
+
+  export type MpesaTransactionAvgAggregateOutputType = {
+    id: number | null
+    paymentId: number | null
+    amount: number | null
+    resultCode: number | null
+  }
+
+  export type MpesaTransactionSumAggregateOutputType = {
+    id: number | null
+    paymentId: number | null
+    amount: number | null
+    resultCode: number | null
+  }
+
+  export type MpesaTransactionMinAggregateOutputType = {
+    id: number | null
+    paymentId: number | null
+    phoneNumber: string | null
+    amount: number | null
+    status: $Enums.MpesaStatus | null
+    merchantRequestId: string | null
+    checkoutRequestId: string | null
+    mpesaReceiptNumber: string | null
+    resultCode: number | null
+    resultDesc: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MpesaTransactionMaxAggregateOutputType = {
+    id: number | null
+    paymentId: number | null
+    phoneNumber: string | null
+    amount: number | null
+    status: $Enums.MpesaStatus | null
+    merchantRequestId: string | null
+    checkoutRequestId: string | null
+    mpesaReceiptNumber: string | null
+    resultCode: number | null
+    resultDesc: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type MpesaTransactionCountAggregateOutputType = {
+    id: number
+    paymentId: number
+    phoneNumber: number
+    amount: number
+    status: number
+    merchantRequestId: number
+    checkoutRequestId: number
+    mpesaReceiptNumber: number
+    resultCode: number
+    resultDesc: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type MpesaTransactionAvgAggregateInputType = {
+    id?: true
+    paymentId?: true
+    amount?: true
+    resultCode?: true
+  }
+
+  export type MpesaTransactionSumAggregateInputType = {
+    id?: true
+    paymentId?: true
+    amount?: true
+    resultCode?: true
+  }
+
+  export type MpesaTransactionMinAggregateInputType = {
+    id?: true
+    paymentId?: true
+    phoneNumber?: true
+    amount?: true
+    status?: true
+    merchantRequestId?: true
+    checkoutRequestId?: true
+    mpesaReceiptNumber?: true
+    resultCode?: true
+    resultDesc?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MpesaTransactionMaxAggregateInputType = {
+    id?: true
+    paymentId?: true
+    phoneNumber?: true
+    amount?: true
+    status?: true
+    merchantRequestId?: true
+    checkoutRequestId?: true
+    mpesaReceiptNumber?: true
+    resultCode?: true
+    resultDesc?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type MpesaTransactionCountAggregateInputType = {
+    id?: true
+    paymentId?: true
+    phoneNumber?: true
+    amount?: true
+    status?: true
+    merchantRequestId?: true
+    checkoutRequestId?: true
+    mpesaReceiptNumber?: true
+    resultCode?: true
+    resultDesc?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type MpesaTransactionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MpesaTransaction to aggregate.
+     */
+    where?: MpesaTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MpesaTransactions to fetch.
+     */
+    orderBy?: MpesaTransactionOrderByWithRelationInput | MpesaTransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MpesaTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MpesaTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MpesaTransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned MpesaTransactions
+    **/
+    _count?: true | MpesaTransactionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MpesaTransactionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MpesaTransactionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MpesaTransactionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MpesaTransactionMaxAggregateInputType
+  }
+
+  export type GetMpesaTransactionAggregateType<T extends MpesaTransactionAggregateArgs> = {
+        [P in keyof T & keyof AggregateMpesaTransaction]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMpesaTransaction[P]>
+      : GetScalarType<T[P], AggregateMpesaTransaction[P]>
+  }
+
+
+
+
+  export type MpesaTransactionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MpesaTransactionWhereInput
+    orderBy?: MpesaTransactionOrderByWithAggregationInput | MpesaTransactionOrderByWithAggregationInput[]
+    by: MpesaTransactionScalarFieldEnum[] | MpesaTransactionScalarFieldEnum
+    having?: MpesaTransactionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MpesaTransactionCountAggregateInputType | true
+    _avg?: MpesaTransactionAvgAggregateInputType
+    _sum?: MpesaTransactionSumAggregateInputType
+    _min?: MpesaTransactionMinAggregateInputType
+    _max?: MpesaTransactionMaxAggregateInputType
+  }
+
+  export type MpesaTransactionGroupByOutputType = {
+    id: number
+    paymentId: number
+    phoneNumber: string
+    amount: number
+    status: $Enums.MpesaStatus
+    merchantRequestId: string
+    checkoutRequestId: string
+    mpesaReceiptNumber: string | null
+    resultCode: number | null
+    resultDesc: string | null
+    createdAt: Date
+    updatedAt: Date
+    _count: MpesaTransactionCountAggregateOutputType | null
+    _avg: MpesaTransactionAvgAggregateOutputType | null
+    _sum: MpesaTransactionSumAggregateOutputType | null
+    _min: MpesaTransactionMinAggregateOutputType | null
+    _max: MpesaTransactionMaxAggregateOutputType | null
+  }
+
+  type GetMpesaTransactionGroupByPayload<T extends MpesaTransactionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MpesaTransactionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MpesaTransactionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MpesaTransactionGroupByOutputType[P]>
+            : GetScalarType<T[P], MpesaTransactionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MpesaTransactionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    paymentId?: boolean
+    phoneNumber?: boolean
+    amount?: boolean
+    status?: boolean
+    merchantRequestId?: boolean
+    checkoutRequestId?: boolean
+    mpesaReceiptNumber?: boolean
+    resultCode?: boolean
+    resultDesc?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    payment?: boolean | PaymentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mpesaTransaction"]>
+
+  export type MpesaTransactionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    paymentId?: boolean
+    phoneNumber?: boolean
+    amount?: boolean
+    status?: boolean
+    merchantRequestId?: boolean
+    checkoutRequestId?: boolean
+    mpesaReceiptNumber?: boolean
+    resultCode?: boolean
+    resultDesc?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    payment?: boolean | PaymentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mpesaTransaction"]>
+
+  export type MpesaTransactionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    paymentId?: boolean
+    phoneNumber?: boolean
+    amount?: boolean
+    status?: boolean
+    merchantRequestId?: boolean
+    checkoutRequestId?: boolean
+    mpesaReceiptNumber?: boolean
+    resultCode?: boolean
+    resultDesc?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    payment?: boolean | PaymentDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["mpesaTransaction"]>
+
+  export type MpesaTransactionSelectScalar = {
+    id?: boolean
+    paymentId?: boolean
+    phoneNumber?: boolean
+    amount?: boolean
+    status?: boolean
+    merchantRequestId?: boolean
+    checkoutRequestId?: boolean
+    mpesaReceiptNumber?: boolean
+    resultCode?: boolean
+    resultDesc?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type MpesaTransactionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "paymentId" | "phoneNumber" | "amount" | "status" | "merchantRequestId" | "checkoutRequestId" | "mpesaReceiptNumber" | "resultCode" | "resultDesc" | "createdAt" | "updatedAt", ExtArgs["result"]["mpesaTransaction"]>
+  export type MpesaTransactionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    payment?: boolean | PaymentDefaultArgs<ExtArgs>
+  }
+  export type MpesaTransactionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    payment?: boolean | PaymentDefaultArgs<ExtArgs>
+  }
+  export type MpesaTransactionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    payment?: boolean | PaymentDefaultArgs<ExtArgs>
+  }
+
+  export type $MpesaTransactionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "MpesaTransaction"
+    objects: {
+      payment: Prisma.$PaymentPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      paymentId: number
+      phoneNumber: string
+      amount: number
+      status: $Enums.MpesaStatus
+      merchantRequestId: string
+      checkoutRequestId: string
+      mpesaReceiptNumber: string | null
+      resultCode: number | null
+      resultDesc: string | null
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["mpesaTransaction"]>
+    composites: {}
+  }
+
+  type MpesaTransactionGetPayload<S extends boolean | null | undefined | MpesaTransactionDefaultArgs> = $Result.GetResult<Prisma.$MpesaTransactionPayload, S>
+
+  type MpesaTransactionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MpesaTransactionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MpesaTransactionCountAggregateInputType | true
+    }
+
+  export interface MpesaTransactionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['MpesaTransaction'], meta: { name: 'MpesaTransaction' } }
+    /**
+     * Find zero or one MpesaTransaction that matches the filter.
+     * @param {MpesaTransactionFindUniqueArgs} args - Arguments to find a MpesaTransaction
+     * @example
+     * // Get one MpesaTransaction
+     * const mpesaTransaction = await prisma.mpesaTransaction.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MpesaTransactionFindUniqueArgs>(args: SelectSubset<T, MpesaTransactionFindUniqueArgs<ExtArgs>>): Prisma__MpesaTransactionClient<$Result.GetResult<Prisma.$MpesaTransactionPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one MpesaTransaction that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MpesaTransactionFindUniqueOrThrowArgs} args - Arguments to find a MpesaTransaction
+     * @example
+     * // Get one MpesaTransaction
+     * const mpesaTransaction = await prisma.mpesaTransaction.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MpesaTransactionFindUniqueOrThrowArgs>(args: SelectSubset<T, MpesaTransactionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MpesaTransactionClient<$Result.GetResult<Prisma.$MpesaTransactionPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first MpesaTransaction that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MpesaTransactionFindFirstArgs} args - Arguments to find a MpesaTransaction
+     * @example
+     * // Get one MpesaTransaction
+     * const mpesaTransaction = await prisma.mpesaTransaction.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MpesaTransactionFindFirstArgs>(args?: SelectSubset<T, MpesaTransactionFindFirstArgs<ExtArgs>>): Prisma__MpesaTransactionClient<$Result.GetResult<Prisma.$MpesaTransactionPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first MpesaTransaction that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MpesaTransactionFindFirstOrThrowArgs} args - Arguments to find a MpesaTransaction
+     * @example
+     * // Get one MpesaTransaction
+     * const mpesaTransaction = await prisma.mpesaTransaction.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MpesaTransactionFindFirstOrThrowArgs>(args?: SelectSubset<T, MpesaTransactionFindFirstOrThrowArgs<ExtArgs>>): Prisma__MpesaTransactionClient<$Result.GetResult<Prisma.$MpesaTransactionPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more MpesaTransactions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MpesaTransactionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all MpesaTransactions
+     * const mpesaTransactions = await prisma.mpesaTransaction.findMany()
+     * 
+     * // Get first 10 MpesaTransactions
+     * const mpesaTransactions = await prisma.mpesaTransaction.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const mpesaTransactionWithIdOnly = await prisma.mpesaTransaction.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MpesaTransactionFindManyArgs>(args?: SelectSubset<T, MpesaTransactionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MpesaTransactionPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a MpesaTransaction.
+     * @param {MpesaTransactionCreateArgs} args - Arguments to create a MpesaTransaction.
+     * @example
+     * // Create one MpesaTransaction
+     * const MpesaTransaction = await prisma.mpesaTransaction.create({
+     *   data: {
+     *     // ... data to create a MpesaTransaction
+     *   }
+     * })
+     * 
+     */
+    create<T extends MpesaTransactionCreateArgs>(args: SelectSubset<T, MpesaTransactionCreateArgs<ExtArgs>>): Prisma__MpesaTransactionClient<$Result.GetResult<Prisma.$MpesaTransactionPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many MpesaTransactions.
+     * @param {MpesaTransactionCreateManyArgs} args - Arguments to create many MpesaTransactions.
+     * @example
+     * // Create many MpesaTransactions
+     * const mpesaTransaction = await prisma.mpesaTransaction.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MpesaTransactionCreateManyArgs>(args?: SelectSubset<T, MpesaTransactionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many MpesaTransactions and returns the data saved in the database.
+     * @param {MpesaTransactionCreateManyAndReturnArgs} args - Arguments to create many MpesaTransactions.
+     * @example
+     * // Create many MpesaTransactions
+     * const mpesaTransaction = await prisma.mpesaTransaction.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many MpesaTransactions and only return the `id`
+     * const mpesaTransactionWithIdOnly = await prisma.mpesaTransaction.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MpesaTransactionCreateManyAndReturnArgs>(args?: SelectSubset<T, MpesaTransactionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MpesaTransactionPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
+
+    /**
+     * Delete a MpesaTransaction.
+     * @param {MpesaTransactionDeleteArgs} args - Arguments to delete one MpesaTransaction.
+     * @example
+     * // Delete one MpesaTransaction
+     * const MpesaTransaction = await prisma.mpesaTransaction.delete({
+     *   where: {
+     *     // ... filter to delete one MpesaTransaction
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MpesaTransactionDeleteArgs>(args: SelectSubset<T, MpesaTransactionDeleteArgs<ExtArgs>>): Prisma__MpesaTransactionClient<$Result.GetResult<Prisma.$MpesaTransactionPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one MpesaTransaction.
+     * @param {MpesaTransactionUpdateArgs} args - Arguments to update one MpesaTransaction.
+     * @example
+     * // Update one MpesaTransaction
+     * const mpesaTransaction = await prisma.mpesaTransaction.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MpesaTransactionUpdateArgs>(args: SelectSubset<T, MpesaTransactionUpdateArgs<ExtArgs>>): Prisma__MpesaTransactionClient<$Result.GetResult<Prisma.$MpesaTransactionPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more MpesaTransactions.
+     * @param {MpesaTransactionDeleteManyArgs} args - Arguments to filter MpesaTransactions to delete.
+     * @example
+     * // Delete a few MpesaTransactions
+     * const { count } = await prisma.mpesaTransaction.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MpesaTransactionDeleteManyArgs>(args?: SelectSubset<T, MpesaTransactionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MpesaTransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MpesaTransactionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many MpesaTransactions
+     * const mpesaTransaction = await prisma.mpesaTransaction.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MpesaTransactionUpdateManyArgs>(args: SelectSubset<T, MpesaTransactionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more MpesaTransactions and returns the data updated in the database.
+     * @param {MpesaTransactionUpdateManyAndReturnArgs} args - Arguments to update many MpesaTransactions.
+     * @example
+     * // Update many MpesaTransactions
+     * const mpesaTransaction = await prisma.mpesaTransaction.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more MpesaTransactions and only return the `id`
+     * const mpesaTransactionWithIdOnly = await prisma.mpesaTransaction.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MpesaTransactionUpdateManyAndReturnArgs>(args: SelectSubset<T, MpesaTransactionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MpesaTransactionPayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
+
+    /**
+     * Create or update one MpesaTransaction.
+     * @param {MpesaTransactionUpsertArgs} args - Arguments to update or create a MpesaTransaction.
+     * @example
+     * // Update or create a MpesaTransaction
+     * const mpesaTransaction = await prisma.mpesaTransaction.upsert({
+     *   create: {
+     *     // ... data to create a MpesaTransaction
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the MpesaTransaction we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MpesaTransactionUpsertArgs>(args: SelectSubset<T, MpesaTransactionUpsertArgs<ExtArgs>>): Prisma__MpesaTransactionClient<$Result.GetResult<Prisma.$MpesaTransactionPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of MpesaTransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MpesaTransactionCountArgs} args - Arguments to filter MpesaTransactions to count.
+     * @example
+     * // Count the number of MpesaTransactions
+     * const count = await prisma.mpesaTransaction.count({
+     *   where: {
+     *     // ... the filter for the MpesaTransactions we want to count
+     *   }
+     * })
+    **/
+    count<T extends MpesaTransactionCountArgs>(
+      args?: Subset<T, MpesaTransactionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MpesaTransactionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a MpesaTransaction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MpesaTransactionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MpesaTransactionAggregateArgs>(args: Subset<T, MpesaTransactionAggregateArgs>): Prisma.PrismaPromise<GetMpesaTransactionAggregateType<T>>
+
+    /**
+     * Group by MpesaTransaction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MpesaTransactionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MpesaTransactionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MpesaTransactionGroupByArgs['orderBy'] }
+        : { orderBy?: MpesaTransactionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MpesaTransactionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMpesaTransactionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the MpesaTransaction model
+   */
+  readonly fields: MpesaTransactionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for MpesaTransaction.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MpesaTransactionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    payment<T extends PaymentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, PaymentDefaultArgs<ExtArgs>>): Prisma__PaymentClient<$Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the MpesaTransaction model
+   */ 
+  interface MpesaTransactionFieldRefs {
+    readonly id: FieldRef<"MpesaTransaction", 'Int'>
+    readonly paymentId: FieldRef<"MpesaTransaction", 'Int'>
+    readonly phoneNumber: FieldRef<"MpesaTransaction", 'String'>
+    readonly amount: FieldRef<"MpesaTransaction", 'Int'>
+    readonly status: FieldRef<"MpesaTransaction", 'MpesaStatus'>
+    readonly merchantRequestId: FieldRef<"MpesaTransaction", 'String'>
+    readonly checkoutRequestId: FieldRef<"MpesaTransaction", 'String'>
+    readonly mpesaReceiptNumber: FieldRef<"MpesaTransaction", 'String'>
+    readonly resultCode: FieldRef<"MpesaTransaction", 'Int'>
+    readonly resultDesc: FieldRef<"MpesaTransaction", 'String'>
+    readonly createdAt: FieldRef<"MpesaTransaction", 'DateTime'>
+    readonly updatedAt: FieldRef<"MpesaTransaction", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * MpesaTransaction findUnique
+   */
+  export type MpesaTransactionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MpesaTransaction
+     */
+    select?: MpesaTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MpesaTransaction
+     */
+    omit?: MpesaTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MpesaTransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which MpesaTransaction to fetch.
+     */
+    where: MpesaTransactionWhereUniqueInput
+  }
+
+  /**
+   * MpesaTransaction findUniqueOrThrow
+   */
+  export type MpesaTransactionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MpesaTransaction
+     */
+    select?: MpesaTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MpesaTransaction
+     */
+    omit?: MpesaTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MpesaTransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which MpesaTransaction to fetch.
+     */
+    where: MpesaTransactionWhereUniqueInput
+  }
+
+  /**
+   * MpesaTransaction findFirst
+   */
+  export type MpesaTransactionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MpesaTransaction
+     */
+    select?: MpesaTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MpesaTransaction
+     */
+    omit?: MpesaTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MpesaTransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which MpesaTransaction to fetch.
+     */
+    where?: MpesaTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MpesaTransactions to fetch.
+     */
+    orderBy?: MpesaTransactionOrderByWithRelationInput | MpesaTransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MpesaTransactions.
+     */
+    cursor?: MpesaTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MpesaTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MpesaTransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MpesaTransactions.
+     */
+    distinct?: MpesaTransactionScalarFieldEnum | MpesaTransactionScalarFieldEnum[]
+  }
+
+  /**
+   * MpesaTransaction findFirstOrThrow
+   */
+  export type MpesaTransactionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MpesaTransaction
+     */
+    select?: MpesaTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MpesaTransaction
+     */
+    omit?: MpesaTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MpesaTransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which MpesaTransaction to fetch.
+     */
+    where?: MpesaTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MpesaTransactions to fetch.
+     */
+    orderBy?: MpesaTransactionOrderByWithRelationInput | MpesaTransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for MpesaTransactions.
+     */
+    cursor?: MpesaTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MpesaTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MpesaTransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of MpesaTransactions.
+     */
+    distinct?: MpesaTransactionScalarFieldEnum | MpesaTransactionScalarFieldEnum[]
+  }
+
+  /**
+   * MpesaTransaction findMany
+   */
+  export type MpesaTransactionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MpesaTransaction
+     */
+    select?: MpesaTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MpesaTransaction
+     */
+    omit?: MpesaTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MpesaTransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which MpesaTransactions to fetch.
+     */
+    where?: MpesaTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of MpesaTransactions to fetch.
+     */
+    orderBy?: MpesaTransactionOrderByWithRelationInput | MpesaTransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing MpesaTransactions.
+     */
+    cursor?: MpesaTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` MpesaTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` MpesaTransactions.
+     */
+    skip?: number
+    distinct?: MpesaTransactionScalarFieldEnum | MpesaTransactionScalarFieldEnum[]
+  }
+
+  /**
+   * MpesaTransaction create
+   */
+  export type MpesaTransactionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MpesaTransaction
+     */
+    select?: MpesaTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MpesaTransaction
+     */
+    omit?: MpesaTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MpesaTransactionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a MpesaTransaction.
+     */
+    data: XOR<MpesaTransactionCreateInput, MpesaTransactionUncheckedCreateInput>
+  }
+
+  /**
+   * MpesaTransaction createMany
+   */
+  export type MpesaTransactionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many MpesaTransactions.
+     */
+    data: MpesaTransactionCreateManyInput | MpesaTransactionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * MpesaTransaction createManyAndReturn
+   */
+  export type MpesaTransactionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MpesaTransaction
+     */
+    select?: MpesaTransactionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MpesaTransaction
+     */
+    omit?: MpesaTransactionOmit<ExtArgs> | null
+    /**
+     * The data used to create many MpesaTransactions.
+     */
+    data: MpesaTransactionCreateManyInput | MpesaTransactionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MpesaTransactionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MpesaTransaction update
+   */
+  export type MpesaTransactionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MpesaTransaction
+     */
+    select?: MpesaTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MpesaTransaction
+     */
+    omit?: MpesaTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MpesaTransactionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a MpesaTransaction.
+     */
+    data: XOR<MpesaTransactionUpdateInput, MpesaTransactionUncheckedUpdateInput>
+    /**
+     * Choose, which MpesaTransaction to update.
+     */
+    where: MpesaTransactionWhereUniqueInput
+  }
+
+  /**
+   * MpesaTransaction updateMany
+   */
+  export type MpesaTransactionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update MpesaTransactions.
+     */
+    data: XOR<MpesaTransactionUpdateManyMutationInput, MpesaTransactionUncheckedUpdateManyInput>
+    /**
+     * Filter which MpesaTransactions to update
+     */
+    where?: MpesaTransactionWhereInput
+    /**
+     * Limit how many MpesaTransactions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * MpesaTransaction updateManyAndReturn
+   */
+  export type MpesaTransactionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MpesaTransaction
+     */
+    select?: MpesaTransactionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the MpesaTransaction
+     */
+    omit?: MpesaTransactionOmit<ExtArgs> | null
+    /**
+     * The data used to update MpesaTransactions.
+     */
+    data: XOR<MpesaTransactionUpdateManyMutationInput, MpesaTransactionUncheckedUpdateManyInput>
+    /**
+     * Filter which MpesaTransactions to update
+     */
+    where?: MpesaTransactionWhereInput
+    /**
+     * Limit how many MpesaTransactions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MpesaTransactionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * MpesaTransaction upsert
+   */
+  export type MpesaTransactionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MpesaTransaction
+     */
+    select?: MpesaTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MpesaTransaction
+     */
+    omit?: MpesaTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MpesaTransactionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the MpesaTransaction to update in case it exists.
+     */
+    where: MpesaTransactionWhereUniqueInput
+    /**
+     * In case the MpesaTransaction found by the `where` argument doesn't exist, create a new MpesaTransaction with this data.
+     */
+    create: XOR<MpesaTransactionCreateInput, MpesaTransactionUncheckedCreateInput>
+    /**
+     * In case the MpesaTransaction was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MpesaTransactionUpdateInput, MpesaTransactionUncheckedUpdateInput>
+  }
+
+  /**
+   * MpesaTransaction delete
+   */
+  export type MpesaTransactionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MpesaTransaction
+     */
+    select?: MpesaTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MpesaTransaction
+     */
+    omit?: MpesaTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MpesaTransactionInclude<ExtArgs> | null
+    /**
+     * Filter which MpesaTransaction to delete.
+     */
+    where: MpesaTransactionWhereUniqueInput
+  }
+
+  /**
+   * MpesaTransaction deleteMany
+   */
+  export type MpesaTransactionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which MpesaTransactions to delete
+     */
+    where?: MpesaTransactionWhereInput
+    /**
+     * Limit how many MpesaTransactions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * MpesaTransaction without action
+   */
+  export type MpesaTransactionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MpesaTransaction
+     */
+    select?: MpesaTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the MpesaTransaction
+     */
+    omit?: MpesaTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MpesaTransactionInclude<ExtArgs> | null
   }
 
 
@@ -10015,6 +11375,24 @@ export namespace Prisma {
   };
 
   export type PaymentScalarFieldEnum = (typeof PaymentScalarFieldEnum)[keyof typeof PaymentScalarFieldEnum]
+
+
+  export const MpesaTransactionScalarFieldEnum: {
+    id: 'id',
+    paymentId: 'paymentId',
+    phoneNumber: 'phoneNumber',
+    amount: 'amount',
+    status: 'status',
+    merchantRequestId: 'merchantRequestId',
+    checkoutRequestId: 'checkoutRequestId',
+    mpesaReceiptNumber: 'mpesaReceiptNumber',
+    resultCode: 'resultCode',
+    resultDesc: 'resultDesc',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type MpesaTransactionScalarFieldEnum = (typeof MpesaTransactionScalarFieldEnum)[keyof typeof MpesaTransactionScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -10176,6 +11554,20 @@ export namespace Prisma {
    * Reference to a field of type 'PaymentStatus[]'
    */
   export type ListEnumPaymentStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PaymentStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'MpesaStatus'
+   */
+  export type EnumMpesaStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MpesaStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'MpesaStatus[]'
+   */
+  export type ListEnumMpesaStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'MpesaStatus[]'>
     
   /**
    * Deep Input Types
@@ -10686,10 +12078,11 @@ export namespace Prisma {
     amountDue?: FloatFilter<"Payment"> | number
     amountPaid?: FloatFilter<"Payment"> | number
     dueDate?: DateTimeFilter<"Payment"> | Date | string
-    paymentDate?: DateTimeFilter<"Payment"> | Date | string
+    paymentDate?: DateTimeNullableFilter<"Payment"> | Date | string | null
     paymentStatus?: EnumPaymentStatusFilter<"Payment"> | $Enums.PaymentStatus
     leaseId?: IntFilter<"Payment"> | number
     lease?: XOR<LeaseScalarRelationFilter, LeaseWhereInput>
+    mpesaTransactions?: MpesaTransactionListRelationFilter
   }
 
   export type PaymentOrderByWithRelationInput = {
@@ -10697,32 +12090,35 @@ export namespace Prisma {
     amountDue?: SortOrder
     amountPaid?: SortOrder
     dueDate?: SortOrder
-    paymentDate?: SortOrder
+    paymentDate?: SortOrderInput | SortOrder
     paymentStatus?: SortOrder
     leaseId?: SortOrder
     lease?: LeaseOrderByWithRelationInput
+    mpesaTransactions?: MpesaTransactionOrderByRelationAggregateInput
   }
 
   export type PaymentWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    leaseId_dueDate?: PaymentLeaseIdDueDateCompoundUniqueInput
     AND?: PaymentWhereInput | PaymentWhereInput[]
     OR?: PaymentWhereInput[]
     NOT?: PaymentWhereInput | PaymentWhereInput[]
     amountDue?: FloatFilter<"Payment"> | number
     amountPaid?: FloatFilter<"Payment"> | number
     dueDate?: DateTimeFilter<"Payment"> | Date | string
-    paymentDate?: DateTimeFilter<"Payment"> | Date | string
+    paymentDate?: DateTimeNullableFilter<"Payment"> | Date | string | null
     paymentStatus?: EnumPaymentStatusFilter<"Payment"> | $Enums.PaymentStatus
     leaseId?: IntFilter<"Payment"> | number
     lease?: XOR<LeaseScalarRelationFilter, LeaseWhereInput>
-  }, "id">
+    mpesaTransactions?: MpesaTransactionListRelationFilter
+  }, "id" | "leaseId_dueDate">
 
   export type PaymentOrderByWithAggregationInput = {
     id?: SortOrder
     amountDue?: SortOrder
     amountPaid?: SortOrder
     dueDate?: SortOrder
-    paymentDate?: SortOrder
+    paymentDate?: SortOrderInput | SortOrder
     paymentStatus?: SortOrder
     leaseId?: SortOrder
     _count?: PaymentCountOrderByAggregateInput
@@ -10740,9 +12136,101 @@ export namespace Prisma {
     amountDue?: FloatWithAggregatesFilter<"Payment"> | number
     amountPaid?: FloatWithAggregatesFilter<"Payment"> | number
     dueDate?: DateTimeWithAggregatesFilter<"Payment"> | Date | string
-    paymentDate?: DateTimeWithAggregatesFilter<"Payment"> | Date | string
+    paymentDate?: DateTimeNullableWithAggregatesFilter<"Payment"> | Date | string | null
     paymentStatus?: EnumPaymentStatusWithAggregatesFilter<"Payment"> | $Enums.PaymentStatus
     leaseId?: IntWithAggregatesFilter<"Payment"> | number
+  }
+
+  export type MpesaTransactionWhereInput = {
+    AND?: MpesaTransactionWhereInput | MpesaTransactionWhereInput[]
+    OR?: MpesaTransactionWhereInput[]
+    NOT?: MpesaTransactionWhereInput | MpesaTransactionWhereInput[]
+    id?: IntFilter<"MpesaTransaction"> | number
+    paymentId?: IntFilter<"MpesaTransaction"> | number
+    phoneNumber?: StringFilter<"MpesaTransaction"> | string
+    amount?: IntFilter<"MpesaTransaction"> | number
+    status?: EnumMpesaStatusFilter<"MpesaTransaction"> | $Enums.MpesaStatus
+    merchantRequestId?: StringFilter<"MpesaTransaction"> | string
+    checkoutRequestId?: StringFilter<"MpesaTransaction"> | string
+    mpesaReceiptNumber?: StringNullableFilter<"MpesaTransaction"> | string | null
+    resultCode?: IntNullableFilter<"MpesaTransaction"> | number | null
+    resultDesc?: StringNullableFilter<"MpesaTransaction"> | string | null
+    createdAt?: DateTimeFilter<"MpesaTransaction"> | Date | string
+    updatedAt?: DateTimeFilter<"MpesaTransaction"> | Date | string
+    payment?: XOR<PaymentScalarRelationFilter, PaymentWhereInput>
+  }
+
+  export type MpesaTransactionOrderByWithRelationInput = {
+    id?: SortOrder
+    paymentId?: SortOrder
+    phoneNumber?: SortOrder
+    amount?: SortOrder
+    status?: SortOrder
+    merchantRequestId?: SortOrder
+    checkoutRequestId?: SortOrder
+    mpesaReceiptNumber?: SortOrderInput | SortOrder
+    resultCode?: SortOrderInput | SortOrder
+    resultDesc?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    payment?: PaymentOrderByWithRelationInput
+  }
+
+  export type MpesaTransactionWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    checkoutRequestId?: string
+    mpesaReceiptNumber?: string
+    AND?: MpesaTransactionWhereInput | MpesaTransactionWhereInput[]
+    OR?: MpesaTransactionWhereInput[]
+    NOT?: MpesaTransactionWhereInput | MpesaTransactionWhereInput[]
+    paymentId?: IntFilter<"MpesaTransaction"> | number
+    phoneNumber?: StringFilter<"MpesaTransaction"> | string
+    amount?: IntFilter<"MpesaTransaction"> | number
+    status?: EnumMpesaStatusFilter<"MpesaTransaction"> | $Enums.MpesaStatus
+    merchantRequestId?: StringFilter<"MpesaTransaction"> | string
+    resultCode?: IntNullableFilter<"MpesaTransaction"> | number | null
+    resultDesc?: StringNullableFilter<"MpesaTransaction"> | string | null
+    createdAt?: DateTimeFilter<"MpesaTransaction"> | Date | string
+    updatedAt?: DateTimeFilter<"MpesaTransaction"> | Date | string
+    payment?: XOR<PaymentScalarRelationFilter, PaymentWhereInput>
+  }, "id" | "checkoutRequestId" | "mpesaReceiptNumber">
+
+  export type MpesaTransactionOrderByWithAggregationInput = {
+    id?: SortOrder
+    paymentId?: SortOrder
+    phoneNumber?: SortOrder
+    amount?: SortOrder
+    status?: SortOrder
+    merchantRequestId?: SortOrder
+    checkoutRequestId?: SortOrder
+    mpesaReceiptNumber?: SortOrderInput | SortOrder
+    resultCode?: SortOrderInput | SortOrder
+    resultDesc?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: MpesaTransactionCountOrderByAggregateInput
+    _avg?: MpesaTransactionAvgOrderByAggregateInput
+    _max?: MpesaTransactionMaxOrderByAggregateInput
+    _min?: MpesaTransactionMinOrderByAggregateInput
+    _sum?: MpesaTransactionSumOrderByAggregateInput
+  }
+
+  export type MpesaTransactionScalarWhereWithAggregatesInput = {
+    AND?: MpesaTransactionScalarWhereWithAggregatesInput | MpesaTransactionScalarWhereWithAggregatesInput[]
+    OR?: MpesaTransactionScalarWhereWithAggregatesInput[]
+    NOT?: MpesaTransactionScalarWhereWithAggregatesInput | MpesaTransactionScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"MpesaTransaction"> | number
+    paymentId?: IntWithAggregatesFilter<"MpesaTransaction"> | number
+    phoneNumber?: StringWithAggregatesFilter<"MpesaTransaction"> | string
+    amount?: IntWithAggregatesFilter<"MpesaTransaction"> | number
+    status?: EnumMpesaStatusWithAggregatesFilter<"MpesaTransaction"> | $Enums.MpesaStatus
+    merchantRequestId?: StringWithAggregatesFilter<"MpesaTransaction"> | string
+    checkoutRequestId?: StringWithAggregatesFilter<"MpesaTransaction"> | string
+    mpesaReceiptNumber?: StringNullableWithAggregatesFilter<"MpesaTransaction"> | string | null
+    resultCode?: IntNullableWithAggregatesFilter<"MpesaTransaction"> | number | null
+    resultDesc?: StringNullableWithAggregatesFilter<"MpesaTransaction"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"MpesaTransaction"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"MpesaTransaction"> | Date | string
   }
 
   export type PropertyCreateInput = {
@@ -11241,9 +12729,10 @@ export namespace Prisma {
     amountDue: number
     amountPaid: number
     dueDate: Date | string
-    paymentDate: Date | string
+    paymentDate?: Date | string | null
     paymentStatus: $Enums.PaymentStatus
     lease: LeaseCreateNestedOneWithoutPaymentsInput
+    mpesaTransactions?: MpesaTransactionCreateNestedManyWithoutPaymentInput
   }
 
   export type PaymentUncheckedCreateInput = {
@@ -11251,18 +12740,20 @@ export namespace Prisma {
     amountDue: number
     amountPaid: number
     dueDate: Date | string
-    paymentDate: Date | string
+    paymentDate?: Date | string | null
     paymentStatus: $Enums.PaymentStatus
     leaseId: number
+    mpesaTransactions?: MpesaTransactionUncheckedCreateNestedManyWithoutPaymentInput
   }
 
   export type PaymentUpdateInput = {
     amountDue?: FloatFieldUpdateOperationsInput | number
     amountPaid?: FloatFieldUpdateOperationsInput | number
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    paymentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     lease?: LeaseUpdateOneRequiredWithoutPaymentsNestedInput
+    mpesaTransactions?: MpesaTransactionUpdateManyWithoutPaymentNestedInput
   }
 
   export type PaymentUncheckedUpdateInput = {
@@ -11270,9 +12761,10 @@ export namespace Prisma {
     amountDue?: FloatFieldUpdateOperationsInput | number
     amountPaid?: FloatFieldUpdateOperationsInput | number
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    paymentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     leaseId?: IntFieldUpdateOperationsInput | number
+    mpesaTransactions?: MpesaTransactionUncheckedUpdateManyWithoutPaymentNestedInput
   }
 
   export type PaymentCreateManyInput = {
@@ -11280,7 +12772,7 @@ export namespace Prisma {
     amountDue: number
     amountPaid: number
     dueDate: Date | string
-    paymentDate: Date | string
+    paymentDate?: Date | string | null
     paymentStatus: $Enums.PaymentStatus
     leaseId: number
   }
@@ -11289,7 +12781,7 @@ export namespace Prisma {
     amountDue?: FloatFieldUpdateOperationsInput | number
     amountPaid?: FloatFieldUpdateOperationsInput | number
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    paymentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   }
 
@@ -11298,9 +12790,110 @@ export namespace Prisma {
     amountDue?: FloatFieldUpdateOperationsInput | number
     amountPaid?: FloatFieldUpdateOperationsInput | number
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    paymentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
     leaseId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type MpesaTransactionCreateInput = {
+    phoneNumber: string
+    amount: number
+    status?: $Enums.MpesaStatus
+    merchantRequestId: string
+    checkoutRequestId: string
+    mpesaReceiptNumber?: string | null
+    resultCode?: number | null
+    resultDesc?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    payment: PaymentCreateNestedOneWithoutMpesaTransactionsInput
+  }
+
+  export type MpesaTransactionUncheckedCreateInput = {
+    id?: number
+    paymentId: number
+    phoneNumber: string
+    amount: number
+    status?: $Enums.MpesaStatus
+    merchantRequestId: string
+    checkoutRequestId: string
+    mpesaReceiptNumber?: string | null
+    resultCode?: number | null
+    resultDesc?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MpesaTransactionUpdateInput = {
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    status?: EnumMpesaStatusFieldUpdateOperationsInput | $Enums.MpesaStatus
+    merchantRequestId?: StringFieldUpdateOperationsInput | string
+    checkoutRequestId?: StringFieldUpdateOperationsInput | string
+    mpesaReceiptNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    resultCode?: NullableIntFieldUpdateOperationsInput | number | null
+    resultDesc?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    payment?: PaymentUpdateOneRequiredWithoutMpesaTransactionsNestedInput
+  }
+
+  export type MpesaTransactionUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    paymentId?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    status?: EnumMpesaStatusFieldUpdateOperationsInput | $Enums.MpesaStatus
+    merchantRequestId?: StringFieldUpdateOperationsInput | string
+    checkoutRequestId?: StringFieldUpdateOperationsInput | string
+    mpesaReceiptNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    resultCode?: NullableIntFieldUpdateOperationsInput | number | null
+    resultDesc?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MpesaTransactionCreateManyInput = {
+    id?: number
+    paymentId: number
+    phoneNumber: string
+    amount: number
+    status?: $Enums.MpesaStatus
+    merchantRequestId: string
+    checkoutRequestId: string
+    mpesaReceiptNumber?: string | null
+    resultCode?: number | null
+    resultDesc?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MpesaTransactionUpdateManyMutationInput = {
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    status?: EnumMpesaStatusFieldUpdateOperationsInput | $Enums.MpesaStatus
+    merchantRequestId?: StringFieldUpdateOperationsInput | string
+    checkoutRequestId?: StringFieldUpdateOperationsInput | string
+    mpesaReceiptNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    resultCode?: NullableIntFieldUpdateOperationsInput | number | null
+    resultDesc?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MpesaTransactionUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    paymentId?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    status?: EnumMpesaStatusFieldUpdateOperationsInput | $Enums.MpesaStatus
+    merchantRequestId?: StringFieldUpdateOperationsInput | string
+    checkoutRequestId?: StringFieldUpdateOperationsInput | string
+    mpesaReceiptNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    resultCode?: NullableIntFieldUpdateOperationsInput | number | null
+    resultDesc?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -11941,6 +13534,17 @@ export namespace Prisma {
     propertyId?: SortOrder
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type EnumPaymentStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.PaymentStatus | EnumPaymentStatusFieldRefInput<$PrismaModel>
     in?: $Enums.PaymentStatus[] | ListEnumPaymentStatusFieldRefInput<$PrismaModel>
@@ -11951,6 +13555,21 @@ export namespace Prisma {
   export type LeaseScalarRelationFilter = {
     is?: LeaseWhereInput
     isNot?: LeaseWhereInput
+  }
+
+  export type MpesaTransactionListRelationFilter = {
+    every?: MpesaTransactionWhereInput
+    some?: MpesaTransactionWhereInput
+    none?: MpesaTransactionWhereInput
+  }
+
+  export type MpesaTransactionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type PaymentLeaseIdDueDateCompoundUniqueInput = {
+    leaseId: number
+    dueDate: Date | string
   }
 
   export type PaymentCountOrderByAggregateInput = {
@@ -11997,6 +13616,20 @@ export namespace Prisma {
     leaseId?: SortOrder
   }
 
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
   export type EnumPaymentStatusWithAggregatesFilter<$PrismaModel = never> = {
     equals?: $Enums.PaymentStatus | EnumPaymentStatusFieldRefInput<$PrismaModel>
     in?: $Enums.PaymentStatus[] | ListEnumPaymentStatusFieldRefInput<$PrismaModel>
@@ -12005,6 +13638,87 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumPaymentStatusFilter<$PrismaModel>
     _max?: NestedEnumPaymentStatusFilter<$PrismaModel>
+  }
+
+  export type EnumMpesaStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.MpesaStatus | EnumMpesaStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.MpesaStatus[] | ListEnumMpesaStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MpesaStatus[] | ListEnumMpesaStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumMpesaStatusFilter<$PrismaModel> | $Enums.MpesaStatus
+  }
+
+  export type PaymentScalarRelationFilter = {
+    is?: PaymentWhereInput
+    isNot?: PaymentWhereInput
+  }
+
+  export type MpesaTransactionCountOrderByAggregateInput = {
+    id?: SortOrder
+    paymentId?: SortOrder
+    phoneNumber?: SortOrder
+    amount?: SortOrder
+    status?: SortOrder
+    merchantRequestId?: SortOrder
+    checkoutRequestId?: SortOrder
+    mpesaReceiptNumber?: SortOrder
+    resultCode?: SortOrder
+    resultDesc?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MpesaTransactionAvgOrderByAggregateInput = {
+    id?: SortOrder
+    paymentId?: SortOrder
+    amount?: SortOrder
+    resultCode?: SortOrder
+  }
+
+  export type MpesaTransactionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    paymentId?: SortOrder
+    phoneNumber?: SortOrder
+    amount?: SortOrder
+    status?: SortOrder
+    merchantRequestId?: SortOrder
+    checkoutRequestId?: SortOrder
+    mpesaReceiptNumber?: SortOrder
+    resultCode?: SortOrder
+    resultDesc?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MpesaTransactionMinOrderByAggregateInput = {
+    id?: SortOrder
+    paymentId?: SortOrder
+    phoneNumber?: SortOrder
+    amount?: SortOrder
+    status?: SortOrder
+    merchantRequestId?: SortOrder
+    checkoutRequestId?: SortOrder
+    mpesaReceiptNumber?: SortOrder
+    resultCode?: SortOrder
+    resultDesc?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type MpesaTransactionSumOrderByAggregateInput = {
+    id?: SortOrder
+    paymentId?: SortOrder
+    amount?: SortOrder
+    resultCode?: SortOrder
+  }
+
+  export type EnumMpesaStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MpesaStatus | EnumMpesaStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.MpesaStatus[] | ListEnumMpesaStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MpesaStatus[] | ListEnumMpesaStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumMpesaStatusWithAggregatesFilter<$PrismaModel> | $Enums.MpesaStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMpesaStatusFilter<$PrismaModel>
+    _max?: NestedEnumMpesaStatusFilter<$PrismaModel>
   }
 
   export type PropertyCreatephotoUrlsInput = {
@@ -12655,6 +14369,24 @@ export namespace Prisma {
     connect?: LeaseWhereUniqueInput
   }
 
+  export type MpesaTransactionCreateNestedManyWithoutPaymentInput = {
+    create?: XOR<MpesaTransactionCreateWithoutPaymentInput, MpesaTransactionUncheckedCreateWithoutPaymentInput> | MpesaTransactionCreateWithoutPaymentInput[] | MpesaTransactionUncheckedCreateWithoutPaymentInput[]
+    connectOrCreate?: MpesaTransactionCreateOrConnectWithoutPaymentInput | MpesaTransactionCreateOrConnectWithoutPaymentInput[]
+    createMany?: MpesaTransactionCreateManyPaymentInputEnvelope
+    connect?: MpesaTransactionWhereUniqueInput | MpesaTransactionWhereUniqueInput[]
+  }
+
+  export type MpesaTransactionUncheckedCreateNestedManyWithoutPaymentInput = {
+    create?: XOR<MpesaTransactionCreateWithoutPaymentInput, MpesaTransactionUncheckedCreateWithoutPaymentInput> | MpesaTransactionCreateWithoutPaymentInput[] | MpesaTransactionUncheckedCreateWithoutPaymentInput[]
+    connectOrCreate?: MpesaTransactionCreateOrConnectWithoutPaymentInput | MpesaTransactionCreateOrConnectWithoutPaymentInput[]
+    createMany?: MpesaTransactionCreateManyPaymentInputEnvelope
+    connect?: MpesaTransactionWhereUniqueInput | MpesaTransactionWhereUniqueInput[]
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
   export type EnumPaymentStatusFieldUpdateOperationsInput = {
     set?: $Enums.PaymentStatus
   }
@@ -12665,6 +14397,52 @@ export namespace Prisma {
     upsert?: LeaseUpsertWithoutPaymentsInput
     connect?: LeaseWhereUniqueInput
     update?: XOR<XOR<LeaseUpdateToOneWithWhereWithoutPaymentsInput, LeaseUpdateWithoutPaymentsInput>, LeaseUncheckedUpdateWithoutPaymentsInput>
+  }
+
+  export type MpesaTransactionUpdateManyWithoutPaymentNestedInput = {
+    create?: XOR<MpesaTransactionCreateWithoutPaymentInput, MpesaTransactionUncheckedCreateWithoutPaymentInput> | MpesaTransactionCreateWithoutPaymentInput[] | MpesaTransactionUncheckedCreateWithoutPaymentInput[]
+    connectOrCreate?: MpesaTransactionCreateOrConnectWithoutPaymentInput | MpesaTransactionCreateOrConnectWithoutPaymentInput[]
+    upsert?: MpesaTransactionUpsertWithWhereUniqueWithoutPaymentInput | MpesaTransactionUpsertWithWhereUniqueWithoutPaymentInput[]
+    createMany?: MpesaTransactionCreateManyPaymentInputEnvelope
+    set?: MpesaTransactionWhereUniqueInput | MpesaTransactionWhereUniqueInput[]
+    disconnect?: MpesaTransactionWhereUniqueInput | MpesaTransactionWhereUniqueInput[]
+    delete?: MpesaTransactionWhereUniqueInput | MpesaTransactionWhereUniqueInput[]
+    connect?: MpesaTransactionWhereUniqueInput | MpesaTransactionWhereUniqueInput[]
+    update?: MpesaTransactionUpdateWithWhereUniqueWithoutPaymentInput | MpesaTransactionUpdateWithWhereUniqueWithoutPaymentInput[]
+    updateMany?: MpesaTransactionUpdateManyWithWhereWithoutPaymentInput | MpesaTransactionUpdateManyWithWhereWithoutPaymentInput[]
+    deleteMany?: MpesaTransactionScalarWhereInput | MpesaTransactionScalarWhereInput[]
+  }
+
+  export type MpesaTransactionUncheckedUpdateManyWithoutPaymentNestedInput = {
+    create?: XOR<MpesaTransactionCreateWithoutPaymentInput, MpesaTransactionUncheckedCreateWithoutPaymentInput> | MpesaTransactionCreateWithoutPaymentInput[] | MpesaTransactionUncheckedCreateWithoutPaymentInput[]
+    connectOrCreate?: MpesaTransactionCreateOrConnectWithoutPaymentInput | MpesaTransactionCreateOrConnectWithoutPaymentInput[]
+    upsert?: MpesaTransactionUpsertWithWhereUniqueWithoutPaymentInput | MpesaTransactionUpsertWithWhereUniqueWithoutPaymentInput[]
+    createMany?: MpesaTransactionCreateManyPaymentInputEnvelope
+    set?: MpesaTransactionWhereUniqueInput | MpesaTransactionWhereUniqueInput[]
+    disconnect?: MpesaTransactionWhereUniqueInput | MpesaTransactionWhereUniqueInput[]
+    delete?: MpesaTransactionWhereUniqueInput | MpesaTransactionWhereUniqueInput[]
+    connect?: MpesaTransactionWhereUniqueInput | MpesaTransactionWhereUniqueInput[]
+    update?: MpesaTransactionUpdateWithWhereUniqueWithoutPaymentInput | MpesaTransactionUpdateWithWhereUniqueWithoutPaymentInput[]
+    updateMany?: MpesaTransactionUpdateManyWithWhereWithoutPaymentInput | MpesaTransactionUpdateManyWithWhereWithoutPaymentInput[]
+    deleteMany?: MpesaTransactionScalarWhereInput | MpesaTransactionScalarWhereInput[]
+  }
+
+  export type PaymentCreateNestedOneWithoutMpesaTransactionsInput = {
+    create?: XOR<PaymentCreateWithoutMpesaTransactionsInput, PaymentUncheckedCreateWithoutMpesaTransactionsInput>
+    connectOrCreate?: PaymentCreateOrConnectWithoutMpesaTransactionsInput
+    connect?: PaymentWhereUniqueInput
+  }
+
+  export type EnumMpesaStatusFieldUpdateOperationsInput = {
+    set?: $Enums.MpesaStatus
+  }
+
+  export type PaymentUpdateOneRequiredWithoutMpesaTransactionsNestedInput = {
+    create?: XOR<PaymentCreateWithoutMpesaTransactionsInput, PaymentUncheckedCreateWithoutMpesaTransactionsInput>
+    connectOrCreate?: PaymentCreateOrConnectWithoutMpesaTransactionsInput
+    upsert?: PaymentUpsertWithoutMpesaTransactionsInput
+    connect?: PaymentWhereUniqueInput
+    update?: XOR<XOR<PaymentUpdateToOneWithWhereWithoutMpesaTransactionsInput, PaymentUpdateWithoutMpesaTransactionsInput>, PaymentUncheckedUpdateWithoutMpesaTransactionsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -12909,11 +14687,36 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedEnumPaymentStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.PaymentStatus | EnumPaymentStatusFieldRefInput<$PrismaModel>
     in?: $Enums.PaymentStatus[] | ListEnumPaymentStatusFieldRefInput<$PrismaModel>
     notIn?: $Enums.PaymentStatus[] | ListEnumPaymentStatusFieldRefInput<$PrismaModel>
     not?: NestedEnumPaymentStatusFilter<$PrismaModel> | $Enums.PaymentStatus
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NestedEnumPaymentStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -12924,6 +14727,23 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumPaymentStatusFilter<$PrismaModel>
     _max?: NestedEnumPaymentStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumMpesaStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.MpesaStatus | EnumMpesaStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.MpesaStatus[] | ListEnumMpesaStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MpesaStatus[] | ListEnumMpesaStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumMpesaStatusFilter<$PrismaModel> | $Enums.MpesaStatus
+  }
+
+  export type NestedEnumMpesaStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.MpesaStatus | EnumMpesaStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.MpesaStatus[] | ListEnumMpesaStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.MpesaStatus[] | ListEnumMpesaStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumMpesaStatusWithAggregatesFilter<$PrismaModel> | $Enums.MpesaStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumMpesaStatusFilter<$PrismaModel>
+    _max?: NestedEnumMpesaStatusFilter<$PrismaModel>
   }
 
   export type ManagerCreateWithoutManagedPropertiesInput = {
@@ -13982,8 +15802,9 @@ export namespace Prisma {
     amountDue: number
     amountPaid: number
     dueDate: Date | string
-    paymentDate: Date | string
+    paymentDate?: Date | string | null
     paymentStatus: $Enums.PaymentStatus
+    mpesaTransactions?: MpesaTransactionCreateNestedManyWithoutPaymentInput
   }
 
   export type PaymentUncheckedCreateWithoutLeaseInput = {
@@ -13991,8 +15812,9 @@ export namespace Prisma {
     amountDue: number
     amountPaid: number
     dueDate: Date | string
-    paymentDate: Date | string
+    paymentDate?: Date | string | null
     paymentStatus: $Enums.PaymentStatus
+    mpesaTransactions?: MpesaTransactionUncheckedCreateNestedManyWithoutPaymentInput
   }
 
   export type PaymentCreateOrConnectWithoutLeaseInput = {
@@ -14157,7 +15979,7 @@ export namespace Prisma {
     amountDue?: FloatFilter<"Payment"> | number
     amountPaid?: FloatFilter<"Payment"> | number
     dueDate?: DateTimeFilter<"Payment"> | Date | string
-    paymentDate?: DateTimeFilter<"Payment"> | Date | string
+    paymentDate?: DateTimeNullableFilter<"Payment"> | Date | string | null
     paymentStatus?: EnumPaymentStatusFilter<"Payment"> | $Enums.PaymentStatus
     leaseId?: IntFilter<"Payment"> | number
   }
@@ -14186,6 +16008,43 @@ export namespace Prisma {
   export type LeaseCreateOrConnectWithoutPaymentsInput = {
     where: LeaseWhereUniqueInput
     create: XOR<LeaseCreateWithoutPaymentsInput, LeaseUncheckedCreateWithoutPaymentsInput>
+  }
+
+  export type MpesaTransactionCreateWithoutPaymentInput = {
+    phoneNumber: string
+    amount: number
+    status?: $Enums.MpesaStatus
+    merchantRequestId: string
+    checkoutRequestId: string
+    mpesaReceiptNumber?: string | null
+    resultCode?: number | null
+    resultDesc?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MpesaTransactionUncheckedCreateWithoutPaymentInput = {
+    id?: number
+    phoneNumber: string
+    amount: number
+    status?: $Enums.MpesaStatus
+    merchantRequestId: string
+    checkoutRequestId: string
+    mpesaReceiptNumber?: string | null
+    resultCode?: number | null
+    resultDesc?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MpesaTransactionCreateOrConnectWithoutPaymentInput = {
+    where: MpesaTransactionWhereUniqueInput
+    create: XOR<MpesaTransactionCreateWithoutPaymentInput, MpesaTransactionUncheckedCreateWithoutPaymentInput>
+  }
+
+  export type MpesaTransactionCreateManyPaymentInputEnvelope = {
+    data: MpesaTransactionCreateManyPaymentInput | MpesaTransactionCreateManyPaymentInput[]
+    skipDuplicates?: boolean
   }
 
   export type LeaseUpsertWithoutPaymentsInput = {
@@ -14218,6 +16077,94 @@ export namespace Prisma {
     propertyId?: IntFieldUpdateOperationsInput | number
     tenantCognitoId?: StringFieldUpdateOperationsInput | string
     application?: ApplicationUncheckedUpdateOneWithoutLeaseNestedInput
+  }
+
+  export type MpesaTransactionUpsertWithWhereUniqueWithoutPaymentInput = {
+    where: MpesaTransactionWhereUniqueInput
+    update: XOR<MpesaTransactionUpdateWithoutPaymentInput, MpesaTransactionUncheckedUpdateWithoutPaymentInput>
+    create: XOR<MpesaTransactionCreateWithoutPaymentInput, MpesaTransactionUncheckedCreateWithoutPaymentInput>
+  }
+
+  export type MpesaTransactionUpdateWithWhereUniqueWithoutPaymentInput = {
+    where: MpesaTransactionWhereUniqueInput
+    data: XOR<MpesaTransactionUpdateWithoutPaymentInput, MpesaTransactionUncheckedUpdateWithoutPaymentInput>
+  }
+
+  export type MpesaTransactionUpdateManyWithWhereWithoutPaymentInput = {
+    where: MpesaTransactionScalarWhereInput
+    data: XOR<MpesaTransactionUpdateManyMutationInput, MpesaTransactionUncheckedUpdateManyWithoutPaymentInput>
+  }
+
+  export type MpesaTransactionScalarWhereInput = {
+    AND?: MpesaTransactionScalarWhereInput | MpesaTransactionScalarWhereInput[]
+    OR?: MpesaTransactionScalarWhereInput[]
+    NOT?: MpesaTransactionScalarWhereInput | MpesaTransactionScalarWhereInput[]
+    id?: IntFilter<"MpesaTransaction"> | number
+    paymentId?: IntFilter<"MpesaTransaction"> | number
+    phoneNumber?: StringFilter<"MpesaTransaction"> | string
+    amount?: IntFilter<"MpesaTransaction"> | number
+    status?: EnumMpesaStatusFilter<"MpesaTransaction"> | $Enums.MpesaStatus
+    merchantRequestId?: StringFilter<"MpesaTransaction"> | string
+    checkoutRequestId?: StringFilter<"MpesaTransaction"> | string
+    mpesaReceiptNumber?: StringNullableFilter<"MpesaTransaction"> | string | null
+    resultCode?: IntNullableFilter<"MpesaTransaction"> | number | null
+    resultDesc?: StringNullableFilter<"MpesaTransaction"> | string | null
+    createdAt?: DateTimeFilter<"MpesaTransaction"> | Date | string
+    updatedAt?: DateTimeFilter<"MpesaTransaction"> | Date | string
+  }
+
+  export type PaymentCreateWithoutMpesaTransactionsInput = {
+    amountDue: number
+    amountPaid: number
+    dueDate: Date | string
+    paymentDate?: Date | string | null
+    paymentStatus: $Enums.PaymentStatus
+    lease: LeaseCreateNestedOneWithoutPaymentsInput
+  }
+
+  export type PaymentUncheckedCreateWithoutMpesaTransactionsInput = {
+    id?: number
+    amountDue: number
+    amountPaid: number
+    dueDate: Date | string
+    paymentDate?: Date | string | null
+    paymentStatus: $Enums.PaymentStatus
+    leaseId: number
+  }
+
+  export type PaymentCreateOrConnectWithoutMpesaTransactionsInput = {
+    where: PaymentWhereUniqueInput
+    create: XOR<PaymentCreateWithoutMpesaTransactionsInput, PaymentUncheckedCreateWithoutMpesaTransactionsInput>
+  }
+
+  export type PaymentUpsertWithoutMpesaTransactionsInput = {
+    update: XOR<PaymentUpdateWithoutMpesaTransactionsInput, PaymentUncheckedUpdateWithoutMpesaTransactionsInput>
+    create: XOR<PaymentCreateWithoutMpesaTransactionsInput, PaymentUncheckedCreateWithoutMpesaTransactionsInput>
+    where?: PaymentWhereInput
+  }
+
+  export type PaymentUpdateToOneWithWhereWithoutMpesaTransactionsInput = {
+    where?: PaymentWhereInput
+    data: XOR<PaymentUpdateWithoutMpesaTransactionsInput, PaymentUncheckedUpdateWithoutMpesaTransactionsInput>
+  }
+
+  export type PaymentUpdateWithoutMpesaTransactionsInput = {
+    amountDue?: FloatFieldUpdateOperationsInput | number
+    amountPaid?: FloatFieldUpdateOperationsInput | number
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    paymentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    lease?: LeaseUpdateOneRequiredWithoutPaymentsNestedInput
+  }
+
+  export type PaymentUncheckedUpdateWithoutMpesaTransactionsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    amountDue?: FloatFieldUpdateOperationsInput | number
+    amountPaid?: FloatFieldUpdateOperationsInput | number
+    dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    paymentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    leaseId?: IntFieldUpdateOperationsInput | number
   }
 
   export type LeaseCreateManyPropertyInput = {
@@ -14793,7 +16740,7 @@ export namespace Prisma {
     amountDue: number
     amountPaid: number
     dueDate: Date | string
-    paymentDate: Date | string
+    paymentDate?: Date | string | null
     paymentStatus: $Enums.PaymentStatus
   }
 
@@ -14801,8 +16748,9 @@ export namespace Prisma {
     amountDue?: FloatFieldUpdateOperationsInput | number
     amountPaid?: FloatFieldUpdateOperationsInput | number
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    paymentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    mpesaTransactions?: MpesaTransactionUpdateManyWithoutPaymentNestedInput
   }
 
   export type PaymentUncheckedUpdateWithoutLeaseInput = {
@@ -14810,8 +16758,9 @@ export namespace Prisma {
     amountDue?: FloatFieldUpdateOperationsInput | number
     amountPaid?: FloatFieldUpdateOperationsInput | number
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    paymentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+    mpesaTransactions?: MpesaTransactionUncheckedUpdateManyWithoutPaymentNestedInput
   }
 
   export type PaymentUncheckedUpdateManyWithoutLeaseInput = {
@@ -14819,8 +16768,63 @@ export namespace Prisma {
     amountDue?: FloatFieldUpdateOperationsInput | number
     amountPaid?: FloatFieldUpdateOperationsInput | number
     dueDate?: DateTimeFieldUpdateOperationsInput | Date | string
-    paymentDate?: DateTimeFieldUpdateOperationsInput | Date | string
+    paymentDate?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     paymentStatus?: EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  }
+
+  export type MpesaTransactionCreateManyPaymentInput = {
+    id?: number
+    phoneNumber: string
+    amount: number
+    status?: $Enums.MpesaStatus
+    merchantRequestId: string
+    checkoutRequestId: string
+    mpesaReceiptNumber?: string | null
+    resultCode?: number | null
+    resultDesc?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type MpesaTransactionUpdateWithoutPaymentInput = {
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    status?: EnumMpesaStatusFieldUpdateOperationsInput | $Enums.MpesaStatus
+    merchantRequestId?: StringFieldUpdateOperationsInput | string
+    checkoutRequestId?: StringFieldUpdateOperationsInput | string
+    mpesaReceiptNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    resultCode?: NullableIntFieldUpdateOperationsInput | number | null
+    resultDesc?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MpesaTransactionUncheckedUpdateWithoutPaymentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    status?: EnumMpesaStatusFieldUpdateOperationsInput | $Enums.MpesaStatus
+    merchantRequestId?: StringFieldUpdateOperationsInput | string
+    checkoutRequestId?: StringFieldUpdateOperationsInput | string
+    mpesaReceiptNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    resultCode?: NullableIntFieldUpdateOperationsInput | number | null
+    resultDesc?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MpesaTransactionUncheckedUpdateManyWithoutPaymentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    phoneNumber?: StringFieldUpdateOperationsInput | string
+    amount?: IntFieldUpdateOperationsInput | number
+    status?: EnumMpesaStatusFieldUpdateOperationsInput | $Enums.MpesaStatus
+    merchantRequestId?: StringFieldUpdateOperationsInput | string
+    checkoutRequestId?: StringFieldUpdateOperationsInput | string
+    mpesaReceiptNumber?: NullableStringFieldUpdateOperationsInput | string | null
+    resultCode?: NullableIntFieldUpdateOperationsInput | number | null
+    resultDesc?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

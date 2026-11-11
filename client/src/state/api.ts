@@ -8,6 +8,16 @@ import {
   Tenant,
 } from "@/types/prismaTypes";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
+export type LeaseWithDetails = Lease & { tenant: Tenant; payments: Payment[] };
+
+export interface RentPaymentStatus {
+  transactionId: number;
+  status: "Pending" | "Success" | "Failed";
+  amount: number;
+  resultDesc?: string | null;
+  mpesaReceiptNumber?: string | null;
+}
 import { fetchAuthSession, getCurrentUser } from "aws-amplify/auth";
 import { FiltersState } from ".";
 
@@ -272,7 +282,7 @@ export const api = createApi({
       },
     }),
 
-    getPropertyLeases: build.query<Lease[], number>({
+    getPropertyLeases: build.query<LeaseWithDetails[], number>({
       query: (propertyId) => `properties/${propertyId}/leases`,
       providesTags: ["Leases"],
       async onQueryStarted(_, { queryFulfilled }) {
@@ -348,6 +358,26 @@ export const api = createApi({
         });
       },
     }),
+
+    payRentWithMpesa: build.mutation<
+      RentPaymentStatus,
+      { leaseId: number; phoneNumber: string }
+    >({
+      query: ({ leaseId, phoneNumber }) => ({
+        url: `leases/${leaseId}/mpesa`,
+        method: "POST",
+        body: { phoneNumber },
+      }),
+      invalidatesTags: ["Payments"],
+    }),
+
+    getRentPaymentStatus: build.query<
+      RentPaymentStatus,
+      { leaseId: number; transactionId: number }
+    >({
+      query: ({ leaseId, transactionId }) =>
+        `leases/${leaseId}/mpesa/${transactionId}`,
+    }),
   }),
 });
 
@@ -369,4 +399,6 @@ export const {
   useGetApplicationsQuery,
   useUpdateApplicationStatusMutation,
   useCreateApplicationMutation,
+  usePayRentWithMpesaMutation,
+  useGetRentPaymentStatusQuery,
 } = api;

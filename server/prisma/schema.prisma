@@ -167,9 +167,37 @@ model Payment {
   amountDue     Float
   amountPaid    Float
   dueDate       DateTime
-  paymentDate   DateTime
+  paymentDate   DateTime?
   paymentStatus PaymentStatus
   leaseId       Int
 
-  lease Lease @relation(fields: [leaseId], references: [id])
+  lease             Lease              @relation(fields: [leaseId], references: [id])
+  mpesaTransactions MpesaTransaction[]
+
+  @@unique([leaseId, dueDate])
+}
+
+enum MpesaStatus {
+  Pending
+  Success
+  Failed
+}
+
+model MpesaTransaction {
+  id                 Int         @id @default(autoincrement())
+  paymentId          Int
+  phoneNumber        String
+  amount             Int
+  status             MpesaStatus @default(Pending)
+  merchantRequestId  String
+  checkoutRequestId  String      @unique
+  mpesaReceiptNumber String?     @unique
+  resultCode         Int?
+  resultDesc         String?
+  createdAt          DateTime    @default(now())
+  updatedAt          DateTime    @updatedAt
+
+  payment Payment @relation(fields: [paymentId], references: [id])
+
+  @@index([paymentId, status])
 }

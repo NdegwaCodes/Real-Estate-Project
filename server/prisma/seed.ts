@@ -89,6 +89,7 @@ async function main() {
   ];
 
   // Delete all existing data
+  await prisma.mpesaTransaction.deleteMany({});
   await deleteAllData(orderedFileNames);
 
   // Seed data
