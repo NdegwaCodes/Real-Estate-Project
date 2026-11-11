@@ -11,7 +11,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import {
-  useGetPaymentsQuery,
   useGetPropertyLeasesQuery,
   useGetPropertyQuery,
 } from "@/state/api";
@@ -20,6 +19,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import React from "react";
+import { formatKES } from "@/lib/utils";
+import { Payment } from "@/types/prismaTypes";
 
 const PropertyTenants = () => {
   const { id } = useParams();
@@ -29,16 +30,14 @@ const PropertyTenants = () => {
     useGetPropertyQuery(propertyId);
   const { data: leases, isLoading: leasesLoading } =
     useGetPropertyLeasesQuery(propertyId);
-  const { data: payments, isLoading: paymentsLoading } =
-    useGetPaymentsQuery(propertyId);
 
-  if (propertyLoading || leasesLoading || paymentsLoading) return <Loading />;
+  if (propertyLoading || leasesLoading) return <Loading />;
 
   const getCurrentMonthPaymentStatus = (leaseId: number) => {
     const currentDate = new Date();
-    const currentMonthPayment = payments?.find(
-      (payment) =>
-        payment.leaseId === leaseId &&
+    const lease = leases?.find((l) => l.id === leaseId);
+    const currentMonthPayment = lease?.payments?.find(
+      (payment: Payment) =>
         new Date(payment.dueDate).getMonth() === currentDate.getMonth() &&
         new Date(payment.dueDate).getFullYear() === currentDate.getFullYear()
     );
@@ -122,7 +121,7 @@ const PropertyTenants = () => {
                       </div>
                       <div>{new Date(lease.endDate).toLocaleDateString()}</div>
                     </TableCell>
-                    <TableCell>${lease.rent.toFixed(2)}</TableCell>
+                    <TableCell>{formatKES(lease.rent)}</TableCell>
                     <TableCell>
                       <span
                         className={`px-2 py-1 rounded-full text-xs font-semibold ${
