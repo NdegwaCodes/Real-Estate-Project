@@ -8,21 +8,12 @@ export const listApplications = async (
   res: Response
 ): Promise<void> => {
   try {
-    const { userId, userType } = req.query;
+    const { id: userId, role } = req.user!;
 
-    let whereClause = {};
-
-    if (userId && userType) {
-      if (userType === "tenant") {
-        whereClause = { tenantCognitoId: String(userId) };
-      } else if (userType === "manager") {
-        whereClause = {
-          property: {
-            managerCognitoId: String(userId),
-          },
-        };
-      }
-    }
+    const whereClause =
+      role === "manager"
+        ? { property: { managerCognitoId: userId } }
+        : { tenantCognitoId: userId };
 
     const applications = await prisma.application.findMany({
       where: whereClause,
@@ -182,7 +173,10 @@ export const updateApplicationStatus = async (
       },
     });
 
-    if (!application) {
+    if (
+      !application ||
+      application.property.managerCognitoId !== req.user!.id
+    ) {
       res.status(404).json({ message: "Application not found." });
       return;
     }

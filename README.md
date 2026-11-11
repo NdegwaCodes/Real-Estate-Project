@@ -16,7 +16,8 @@ A full stack rental marketplace where tenants search for homes on a map, favouri
 
 **Platform**
 - Sign-up and sign-in with AWS Cognito, with separate tenant and manager roles
-- Role-checked API routes using the Cognito role claim (`custom:role`)
+- Every API request's Cognito ID token is verified (signature, issuer, audience, expiry) with `aws-jwt-verify`, then checked against the route's role
+- Users can only read and change their own profile, applications, leases and payments
 - Geospatial search with PostGIS (`geography(Point, 4326)` coordinates)
 
 ## Tech stack
@@ -26,7 +27,7 @@ A full stack rental marketplace where tenants search for homes on a map, favouri
 | Frontend | Next.js 15, React 19, TypeScript, Redux Toolkit (RTK Query), Tailwind CSS, Framer Motion, React Hook Form + Zod, FilePond |
 | Auth | AWS Cognito with Amplify UI |
 | Maps | Mapbox GL |
-| Backend | Node.js, Express, TypeScript, Helmet, Morgan, Multer |
+| Backend | Node.js, Express, TypeScript, aws-jwt-verify, Helmet, Morgan, Multer |
 | Database | PostgreSQL with PostGIS, Prisma ORM |
 | Storage and hosting | Amazon S3, EC2 (PM2), see `server/aws-ec2-instructions.md` |
 
@@ -49,6 +50,8 @@ PORT=3002
 DATABASE_URL=postgresql://USER:PASSWORD@localhost:5432/realestate
 AWS_REGION=your-region
 S3_BUCKET_NAME=your-bucket
+COGNITO_USER_POOL_ID=your-user-pool-id
+COGNITO_USER_POOL_CLIENT_ID=your-client-id
 ```
 
 ```bash

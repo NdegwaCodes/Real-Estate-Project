@@ -1,10 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import jwt, { JwtPayload } from "jsonwebtoken";
-
-interface DecodedToken extends JwtPayload {
-  sub: string;
-  "custom:role"?: string;
-}
+import { CognitoJwtVerifier } from "aws-jwt-verify";
 
 declare global {
   namespace Express {
@@ -17,34 +12,85 @@ declare global {
   }
 }
 
-export const authMiddleware = (allowedRoles: string[]) => {
-  return (req: Request, res: Response, next: NextFunction): void => {
-    const token = req.headers.authorization?.split(" ")[1];
+type IdTokenVerifier = ReturnType<
+  typeof CognitoJwtVerifier.create<{ userPoolId: string; clientId: string; tokenUse: "id" }>
+>;
 
-    if (!token) {
+let verifier: IdTokenVerifier | undefined;
+
+const getVerifier = (): IdTokenVerifier => {
+  if (!verifier) {
+    const userPoolId = process.env.COGNITO_USER_POOL_ID;
+    const clientId = process.env.COGNITO_USER_POOL_CLIENT_ID;
+    if (!userPoolId || !clientId) {
+      throw new Error(
+        "COGNITO_USER_POOL_ID and COGNITO_USER_POOL_CLIENT_ID must be set"
+      );
+    }
+    verifier = CognitoJwtVerifier.create({ userPoolId, clientId, tokenUse: "id" });
+  }
+  return verifier;
+};
+
+export const authMiddleware = (allowedRoles: string[]) => {
+  return async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> => {
+    const [scheme, token] = req.headers.authorization?.split(" ") ?? [];
+
+    if (scheme !== "Bearer" || !token) {
       res.status(401).json({ message: "Unauthorized" });
       return;
     }
 
+    let tokenVerifier: IdTokenVerifier;
     try {
-      const decoded = jwt.decode(token) as DecodedToken;
-      const userRole = decoded["custom:role"] || "";
-      req.user = {
-        id: decoded.sub,
-        role: userRole,
-      };
-
-      const hasAccess = allowedRoles.includes(userRole.toLowerCase());
-      if (!hasAccess) {
-        res.status(403).json({ message: "Access Denied" });
-        return;
-      }
+      tokenVerifier = getVerifier();
     } catch (err) {
-      console.error("Failed to decode token:", err);
-      res.status(400).json({ message: "Invalid token" });
+      console.error(err);
+      res.status(500).json({ message: "Authentication is not configured" });
       return;
     }
 
+    let payload;
+    try {
+      payload = await tokenVerifier.verify(token);
+    } catch {
+      res.status(401).json({ message: "Invalid or expired token" });
+      return;
+    }
+
+    const role = String(payload["custom:role"] ?? "").toLowerCase();
+    req.user = { id: payload.sub, role };
+
+    if (!allowedRoles.includes(role)) {
+      res.status(403).json({ message: "Access Denied" });
+      return;
+    }
+
+    next();
+  };
+};
+
+export const requireSelf = (param: string) => {
+  return (req: Request, res: Response, next: NextFunction): void => {
+    if (!req.user || req.params[param] !== req.user.id) {
+      res.status(403).json({ message: "Access Denied" });
+      return;
+    }
+    next();
+  };
+};
+
+export const bindSelf = (field: string) => {
+  return (req: Request, res: Response, next: NextFunction): void => {
+    if (!req.user) {
+      res.status(401).json({ message: "Unauthorized" });
+      return;
+    }
+    req.body = { ...(req.body ?? {}), [field]: req.user.id };
     next();
   };
 };

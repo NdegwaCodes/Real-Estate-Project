@@ -5,7 +5,7 @@ import {
   createProperty,
 } from "../controllers/propertyControllers";
 import multer from "multer";
-import { authMiddleware } from "../middleware/authMiddleware";
+import { authMiddleware, bindSelf } from "../middleware/authMiddleware";
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
@@ -18,6 +18,7 @@ router.post(
   "/",
   authMiddleware(["manager"]),
   upload.array("photos"),
+  bindSelf("managerCognitoId"),
   createProperty
 );
 

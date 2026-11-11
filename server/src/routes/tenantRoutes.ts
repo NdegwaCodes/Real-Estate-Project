@@ -7,14 +7,15 @@ import {
   addFavoriteProperty,
   removeFavoriteProperty,
 } from "../controllers/tenantControllers";
+import { bindSelf, requireSelf } from "../middleware/authMiddleware";
 
 const router = express.Router();
 
-router.get("/:cognitoId", getTenant);
-router.put("/:cognitoId", updateTenant);
-router.post("/", createTenant);
-router.get("/:cognitoId/current-residences", getCurrentResidences);
-router.post("/:cognitoId/favorites/:propertyId", addFavoriteProperty);
-router.delete("/:cognitoId/favorites/:propertyId", removeFavoriteProperty);
+router.get("/:cognitoId", requireSelf("cognitoId"), getTenant);
+router.put("/:cognitoId", requireSelf("cognitoId"), updateTenant);
+router.post("/", bindSelf("cognitoId"), createTenant);
+router.get("/:cognitoId/current-residences", requireSelf("cognitoId"), getCurrentResidences);
+router.post("/:cognitoId/favorites/:propertyId", requireSelf("cognitoId"), addFavoriteProperty);
+router.delete("/:cognitoId/favorites/:propertyId", requireSelf("cognitoId"), removeFavoriteProperty);
 
 export default router;
